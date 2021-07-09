@@ -5,7 +5,7 @@ import logo from '../../assets/logo.png'
 function Logo() {
     return(
         <Fragment>
-              <img src={logo} alt='logo' style={{width: '10vh', margin: '0em 0px 0px 0px'}}/>
+              <img src={logo} alt='logo' style={{width: '5.4rem', height: '2rem',  margin: '1.2em 0px 0px 0px'}}/>
         </Fragment>
     );
 }
