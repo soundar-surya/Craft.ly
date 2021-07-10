@@ -2,8 +2,9 @@ import { useState, Fragment } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
+
+import Stepper from './stepper';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -34,7 +35,7 @@ export default function CSSGrid() {
       </Typography>
       <Grid container spacing={5}>
         <Grid item xs={12} md={4} lg={3}>
-          <Paper className={classes.paper}>xs=4</Paper>
+          <Paper className={classes.paper}><Stepper /></Paper>
         </Grid>
         <Grid item xs={12} md={8} lg={9}>
           <Paper className={classes.paper}>xs=8</Paper>
@@ -42,17 +43,18 @@ export default function CSSGrid() {
       </Grid>
       <Typography variant="subtitle1" gutterBottom className={classes.divider}>
       <Grid container spacing={2}>
-        <Grid item xs={12} md={6} lg={6}>
-        &copy; 2021 Craft.ly
+        <Grid item xs={12} md={6} lg={6} style={{textAlign:'center'}}>
+            crafted with ❤️ by <span style={{color:'#FF5757'}}>Craft.ly</span>
           </Grid>
-          <Grid item xs={12} md={6} lg={6} style={{textAlign:'right'}}>
-            crafted with ❤️ by Craft.ly
+          <Grid item xs={12} md={6} lg={6} style={{textAlign:'center'}}>
+        &copy; 2021 Craft.ly
           </Grid>
         </Grid>
       </Typography>
     </div>
   );
 }
+
 
 
 

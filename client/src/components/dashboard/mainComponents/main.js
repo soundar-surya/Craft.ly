@@ -1,13 +1,10 @@
 import Inventory from './inventory';
-import Create from './create';
+import Create from './create/create';
 import Data from './data';
 import Groups from './groups';
 import Settings from './settings';
 import Contact from './contact';
 import Logout from './logout';
-
-import Typography from '@material-ui/core/Typography';
-
 
 function findCurrentComponent(currentComponent='') {
     if(currentComponent == 'Inventory') {
