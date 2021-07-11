@@ -7,7 +7,7 @@ import StepContent from "@material-ui/core/StepContent";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-
+import { Divider } from "@material-ui/core";
 import FindInPageRoundedIcon from "@material-ui/icons/FindInPageRounded";
 import NoteAddRoundedIcon from "@material-ui/icons/NoteAddRounded";
 import clsx from "clsx";
@@ -58,7 +58,8 @@ function ColorlibStepIcon(props) {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "100%"
+    width: "100%",
+    textAlign: 'left'
   },
   button: {
     marginTop: theme.spacing(1),
@@ -76,22 +77,27 @@ function getSteps() {
   return ["Select web service", "Create a chart"];
 }
 
-
-export default function VerticalLinearStepper() {
+export default function VerticalLinearStepper({setStep, step, setName}) {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    if(step){
+        setStep(false);
+    }
   };
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    setStep(true);
   };
 
   const handleReset = () => {
     setActiveStep(0);
+    setStep(true);
+    setName('Untitled');
   };
 
   return (
@@ -101,7 +107,6 @@ export default function VerticalLinearStepper() {
           <Step key={label}>
             <StepLabel StepIconComponent={ColorlibStepIcon}>{label}</StepLabel>
             <StepContent>
-              {/* <Typography style={{width:'4rem'}}>{getStepContent(index)}</Typography> */}
               <div className={classes.actionsContainer}>
                 <div>
                   <Button
@@ -127,9 +132,10 @@ export default function VerticalLinearStepper() {
           </Step>
         ))}
       </Stepper>
+      <Divider />
       {activeStep === steps.length && (
-        <Paper square elevation={0} className={classes.resetContainer}>
-          <Typography style={{ color: "green" }}>
+        <Paper style={{textAlign:'center'}} square elevation={0} className={classes.resetContainer}>
+          <Typography>
             All steps completed.
           </Typography>
           <Button
@@ -138,6 +144,13 @@ export default function VerticalLinearStepper() {
             className={classes.button}
           >
             Reset
+          </Button>
+          <Button
+            style={{ background: "#FF5757", color: "white" }}
+            
+            className={classes.button}
+          >
+            Publish
           </Button>
         </Paper>
       )}

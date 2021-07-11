@@ -1,10 +1,12 @@
-import { useState, Fragment } from "react";
+import { useState } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 
 import Stepper from './stepper';
+import CreateChart from "./createChart";
+import DataSource from "./dataSource";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -25,8 +27,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CSSGrid() {
   const classes = useStyles();
-  const [name, setname] = useState('Untitled');
-  const [isSourceAvailable, setSourceAvailable] = useState(false); 
+  const [name, setName] = useState('Untitled');
+  const [step, setStep] = useState(true)
+  const [data, setData] = useState([]);
 
   return (
     <div>
@@ -35,10 +38,10 @@ export default function CSSGrid() {
       </Typography>
       <Grid container spacing={5}>
         <Grid item xs={12} md={4} lg={3}>
-          <Paper className={classes.paper}><Stepper /></Paper>
+          <Paper className={classes.paper}><Stepper setStep={setStep} step={step} setName={setName}/></Paper>
         </Grid>
         <Grid item xs={12} md={8} lg={9}>
-          <Paper className={classes.paper}>xs=8</Paper>
+          <Paper className={classes.paper}>{step ?  <DataSource setName={setName} setData={setData} /> : (data.length == 0 ? <DataSource setName={setName} setData={setData}/> :  <CreateChart data={data}/>)}</Paper>
         </Grid>
       </Grid>
       <Typography variant="subtitle1" gutterBottom className={classes.divider}>
