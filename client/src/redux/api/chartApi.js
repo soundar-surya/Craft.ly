@@ -1,0 +1,43 @@
+import axios from 'axios'
+
+const url = 'http://localhost:5000'
+
+export const createChart = async payload => {
+    try{
+        const {data} = await axios.post(`${url}/create-chart`, {payload})
+        return data
+    } catch(e) {
+        console.log(e)
+        return []
+    }
+}
+
+export const getAllCharts = async () => {
+    try{
+        const { data } = await axios.get(`${url}/get-all-charts`)
+        return data
+    } catch(e) {
+        console.log(e)
+        return []
+    }
+}
+
+export const modifyChart = async payload => {
+    try{
+        const {data} = await axios.put(`${url}/modify-chart`, {payload})
+        return data
+    } catch(e) {
+        console.log(e)
+        return []
+    }
+}
+
+export const deleteChart = async title => {
+    try{
+        const {data} = await axios.delete(`${url}/delete-chart/${title}`)
+        return data
+    } catch(e) {
+        console.log(e)
+        return []
+    }
+}

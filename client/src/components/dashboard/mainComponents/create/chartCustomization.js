@@ -6,49 +6,48 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
 
-function ChartCustomization({dataFields, dataSet}) {
+function ChartCustomization({dataFields, dataSet, setChartObject}) {
 
   const classes = useStyles();
 
-    let chartObject = {chartType: '', 
-                                              lengthOfTheFields: 0, 
-                                              xAxisLabelName: '',
-                                              yAxisLabelName: '',
-                                              xAxisLabelNames: [],
-                                              yAxisLabelData: [],
-                                            }
+    let chartObject = {
+                              chartType: '', 
+                              label: '',
+                              lengthOfTheFields: 0, 
+                              xAxisLabelName: '',
+                              yAxisLabelName: '',
+                              xAxisLabelNames: [],
+                              yAxisLabelData: [],
+                             }
     let totalLength = dataSet.length;
-    const [chartType, setChartType] = useState('Bar');
+    let [chartType, setChartType] = useState('Bar');
+    let [message, setMessage] = useState('');
+    let [label, setLabel] = useState('')
     let [preferredLength, setPreferredLength] = useState(5);
     let [xAxisLabel, setXAxisLabel] = useState(dataFields[0]);
     let [yAxisLabel, setYAxisLabel] = useState(dataFields[1]);
 
-    const handleChange = event => {
-      setChartType(event.target.value);
-    };
+    const handleChange = event => setChartType(event.target.value)
 
-    const handleLength = event => {
-      setPreferredLength(event.target.value);
-    } 
+    const handleLength = event => setPreferredLength(event.target.value)
+    
+    const handleXAxisLabel = event => setXAxisLabel(event.target.value)
 
-    const handleXAxisLabel = event => {
-      setXAxisLabel(event.target.value);
-    } 
+    const handleYAxisLabel = event => setYAxisLabel(event.target.value)
 
-    const handleYAxisLabel = event => {
-      setYAxisLabel(event.target.value);
-    } 
+    const handleLabel = event => setLabel(event.target.value)
 
     const createChartObject = () => {
       chartObject.chartType = chartType;
       chartObject.lengthOfTheFields =  preferredLength;
       chartObject.xAxisLabelName = xAxisLabel;
       chartObject.yAxisLabelName = yAxisLabel;
+      chartObject.label = label
 
       // trim dataSet and filter the field names
       dataSet.length = preferredLength;
-    //  chartObject.xAxisLabelNames = 
       dataSet.forEach(record => {
         let fields = Object.keys(record);
         fields.forEach(field => {
@@ -60,8 +59,9 @@ function ChartCustomization({dataFields, dataSet}) {
         })
       })
 
-      chartObject.xAxisLabelNames.forEach(i => console.log(i))
-
+      setChartObject(chartObject);
+      //acknowledge user
+      setMessage('Customization completed. click Finish to proceed further.');
     }
 
 
@@ -84,7 +84,6 @@ function ChartCustomization({dataFields, dataSet}) {
                 <MenuItem value={"Line"}>Line</MenuItem>
                 <MenuItem value={"Bar"}>Bar</MenuItem>
                 <MenuItem value={"Pie"}>Pie</MenuItem>
-                <MenuItem value={"Table"}>Table</MenuItem>
                 <MenuItem value={"Doughnut"}>Doughnut</MenuItem>
               </Select>
             </FormControl>
@@ -152,7 +151,17 @@ function ChartCustomization({dataFields, dataSet}) {
               </Select>
             </FormControl>
             </div>
-            <Button onClick={createChartObject} style={{background: '#FF5757', color: 'white'}}>Filter</Button>
+            <div>
+              <TextField
+                onChange={handleLabel}
+                placeholder="Eg: Active Cases"
+                label="label"
+                id="outlined-size-normal"
+                variant="outlined"
+              />
+            </div>
+            <Button onClick={createChartObject} style={{background: '#FF5757', color: 'white'}}>Continue</Button>
+              {message ? <p style={{color: 'green', fontSize:'1rem'}}>{message}</p> : null}
         </div>
     );
 }

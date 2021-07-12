@@ -1,20 +1,18 @@
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import { Provider } from 'react-redux'
 
-import Home from './home'
+import Routes from './Routes';
+import store from '../redux/store'
+
 
 function App() {
+
   return (
-    <div>
-      <Router>
-        <Switch>
-          <Route path='/' exact component={Home} />
-          <Route path='*'  component={() => <div>404 not found</div>} />
-        </Switch>
-      </Router>
-    </div> 
+    <Provider store={store}>
+      <Routes />
+   </Provider>
   )
 }
 
-export default App;
 
-//#FF5757
+
+export default App;

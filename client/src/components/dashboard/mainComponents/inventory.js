@@ -1,10 +1,14 @@
-function inventory() {
+import { Fragment } from 'react'
+import Chart from './charts/chart';
+
+function Inventory() {
+    
     return(
-        <>
-            <h6>Inventory Component</h6>
-        </>
+        <div>
+            <Chart />
+        </div>
     );
 }
 
 
-export default inventory;
+export default Inventory;

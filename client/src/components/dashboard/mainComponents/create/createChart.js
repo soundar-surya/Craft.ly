@@ -3,7 +3,7 @@ import { useState } from "react";
 import FilterDataFields from "./filterDataFields";
 import ChartCustomization from "./chartCustomization";
 
-function CreateChart({data}) {
+function CreateChart({data, setChartObject}) {
 
     let [filter, setFilter] = useState(false);
     let [filteredFields, setFilteredFields] = useState([]);
@@ -12,7 +12,7 @@ function CreateChart({data}) {
         if(!filter) {
             return <FilterDataFields data={data} setFilteredFields={setFilteredFields} setFilter={setFilter}/>
         } else {
-            return <ChartCustomization dataFields={filteredFields} dataSet={data}/>
+            return <ChartCustomization dataFields={filteredFields} dataSet={data} setChartObject={setChartObject}/>
         }
     }
 

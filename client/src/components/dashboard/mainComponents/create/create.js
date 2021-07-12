@@ -30,6 +30,7 @@ export default function CSSGrid() {
   const [name, setName] = useState('Untitled');
   const [step, setStep] = useState(true)
   const [data, setData] = useState([]);
+  const [chartObject, setChartObject] = useState(null);
 
   return (
     <div>
@@ -38,10 +39,10 @@ export default function CSSGrid() {
       </Typography>
       <Grid container spacing={5}>
         <Grid item xs={12} md={4} lg={3}>
-          <Paper className={classes.paper}><Stepper setStep={setStep} step={step} setName={setName}/></Paper>
+          <Paper className={classes.paper}><Stepper setStep={setStep} step={step} name={name} setName={setName} data={data} chartObject={chartObject} setData={setData} setChartObject={setChartObject}/></Paper>
         </Grid>
         <Grid item xs={12} md={8} lg={9}>
-          <Paper className={classes.paper}>{step ?  <DataSource setName={setName} setData={setData} /> : (data.length == 0 ? <DataSource setName={setName} setData={setData}/> :  <CreateChart data={data}/>)}</Paper>
+          <Paper className={classes.paper}>{step ?  <DataSource setName={setName} setData={setData} /> : (data.length == 0 ? <DataSource setName={setName} setData={setData}/> :  <CreateChart data={data} setChartObject={setChartObject}/>)}</Paper>
         </Grid>
       </Grid>
       <Typography variant="subtitle1" gutterBottom className={classes.divider}>
@@ -60,34 +61,3 @@ export default function CSSGrid() {
 
 
 
-
-
-
-
-
-
-
-
-// function Create() {
-
-//   
-
-//   return(
-//     <Fragment>
-//       <CssBaseline />
-//       <Container fixed>
-//         <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '80vh', marginTop: '3vh' }}>
-
-//         </Typography>
-      
-//       </Container>
-//     </Fragment>
-//   );
-// }
-
-// export default Create;
-
-
-
-// <button onClick={() => setSourceAvailable(!isSourceAvailable)}>clickme</button><br/>
-// {isSourceAvailable ? <CreateChart/> : <DataSource/>}

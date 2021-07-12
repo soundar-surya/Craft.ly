@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
@@ -11,6 +11,9 @@ import { Divider } from "@material-ui/core";
 import FindInPageRoundedIcon from "@material-ui/icons/FindInPageRounded";
 import NoteAddRoundedIcon from "@material-ui/icons/NoteAddRounded";
 import clsx from "clsx";
+import { connect } from 'react-redux'; 
+
+import { CREATE_CHARTS_REQUESTED } from '../../../../redux/actions';
 
 const useColorlibStepIconStyles = makeStyles({
   root: {
@@ -35,26 +38,6 @@ const useColorlibStepIconStyles = makeStyles({
   }
 });
 
-function ColorlibStepIcon(props) {
-  const classes = useColorlibStepIconStyles();
-  const { active, completed } = props;
-
-  const icons = {
-    1: <FindInPageRoundedIcon />,
-    2: <NoteAddRoundedIcon />
-  };
-
-  return (
-    <div
-      className={clsx(classes.root, {
-        [classes.active]: active,
-        [classes.completed]: completed
-      })}
-    >
-      {icons[String(props.icon)]}
-    </div>
-  );
-}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -77,15 +60,21 @@ function getSteps() {
   return ["Select web service", "Create a chart"];
 }
 
-export default function VerticalLinearStepper({setStep, step, setName}) {
+function VerticalStepper({setStep, step, setName, name, setData, data, setChartObject, chartObject, createChart}) {
   const classes = useStyles();
-  const [activeStep, setActiveStep] = React.useState(0);
+  const [activeStep, setActiveStep] = useState(0);
+  const [message, setMessage] = useState('')
   const steps = getSteps();
-
+  
   const handleNext = () => {
+    if(data.length > 0 && activeStep !== steps.length - 1) {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
     if(step){
-        setStep(false);
+      setStep(false);
+    }
+    }
+    if(activeStep === steps.length - 1 && chartObject!=null) {
+      setActiveStep((prevActiveStep) => prevActiveStep + 1);
     }
   };
 
@@ -93,13 +82,22 @@ export default function VerticalLinearStepper({setStep, step, setName}) {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
     setStep(true);
   };
-
+  
   const handleReset = () => {
     setActiveStep(0);
     setStep(true);
     setName('Untitled');
+    setData([]);
+    setChartObject(null);
+    setMessage('');
   };
 
+  const handlePublish = () => {
+    chartObject.name = name;
+    createChart(chartObject);
+    setMessage('Graph has been created successfully.');
+  }
+  
   return (
     <div className={classes.root}>
       <Stepper activeStep={activeStep} orientation="vertical">
@@ -115,7 +113,7 @@ export default function VerticalLinearStepper({setStep, step, setName}) {
                     disabled={activeStep === 0}
                     onClick={handleBack}
                     className={classes.button}
-                  >
+                    >
                     Back
                   </Button>
                   <Button
@@ -123,7 +121,8 @@ export default function VerticalLinearStepper({setStep, step, setName}) {
                     style={{ background: "#FF5757", color: "white" }}
                     onClick={handleNext}
                     className={classes.button}
-                  >
+                    name={activeStep === steps.length - 1 ? "Finish" : "Next"}
+                    >
                     {activeStep === steps.length - 1 ? "Finish" : "Next"}
                   </Button>
                 </div>
@@ -142,18 +141,52 @@ export default function VerticalLinearStepper({setStep, step, setName}) {
             style={{ background: "#FF5757", color: "white" }}
             onClick={handleReset}
             className={classes.button}
-          >
+            >
             Reset
           </Button>
           <Button
             style={{ background: "#FF5757", color: "white" }}
-            
+            onClick={handlePublish}
             className={classes.button}
-          >
+            >
             Publish
           </Button>
+          <p style={{color: 'green'}}>{message}</p>
         </Paper>
       )}
+    </div>
+  );
+}
+
+const mapDispatchToProps = dispatch => ({
+  createChart: chart => dispatch({type: CREATE_CHARTS_REQUESTED, payload: chart}),
+})
+
+export default connect(null, mapDispatchToProps)(VerticalStepper);
+
+
+
+
+
+
+// returns stepper icons
+function ColorlibStepIcon(props) {
+  const classes = useColorlibStepIconStyles();
+  const { active, completed } = props;
+
+  const icons = {
+    1: <FindInPageRoundedIcon />,
+    2: <NoteAddRoundedIcon />
+  };
+
+  return (
+    <div
+      className={clsx(classes.root, {
+        [classes.active]: active,
+        [classes.completed]: completed
+      })}
+    >
+      {icons[String(props.icon)]}
     </div>
   );
 }
