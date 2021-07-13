@@ -7,9 +7,10 @@ import { GET_CHARTS_REQUESTED } from '../redux/actions'
 
 function Routes({getCharts}) {
 
-  useEffect(() => {
-    getCharts()
+  useEffect( () => {
+      getCharts()
   })
+
 
   return (
     <div>

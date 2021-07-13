@@ -18,6 +18,7 @@ app.post('/create-chart', (req, res) => {
 })
 
 app.get('/get-all-charts', (req, res) => {
+    console.log(db)
     res.status(200).send(db)
 })
 

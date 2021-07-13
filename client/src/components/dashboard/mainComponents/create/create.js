@@ -29,7 +29,7 @@ export default function CSSGrid() {
   const classes = useStyles();
   const [name, setName] = useState('Untitled');
   const [step, setStep] = useState(true)
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({});
   const [chartObject, setChartObject] = useState(null);
 
   return (

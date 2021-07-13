@@ -19,7 +19,7 @@ export default function DataSource({setName, setData}) {
       const {data: res = []} = await axios.get(endpoint);
       // check whether it's an array or object
       if(Array.isArray(res)){
-        setData([...res])
+        setData({endpoint, dataSet: [...res]})
         setMessage('Data has been fetched sucessfully.');
       } else {
         setMessage('Insuffient data');

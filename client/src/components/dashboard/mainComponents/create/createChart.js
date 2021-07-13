@@ -10,9 +10,9 @@ function CreateChart({data, setChartObject}) {
 
     const renderContent = () => {
         if(!filter) {
-            return <FilterDataFields data={data} setFilteredFields={setFilteredFields} setFilter={setFilter}/>
+            return <FilterDataFields data={data.dataSet} setFilteredFields={setFilteredFields} setFilter={setFilter}/>
         } else {
-            return <ChartCustomization dataFields={filteredFields} dataSet={data} setChartObject={setChartObject}/>
+            return <ChartCustomization dataFields={filteredFields} data={data} setChartObject={setChartObject}/>
         }
     }
 

@@ -1,13 +1,13 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const drawerWidth = 180;
-
 export const useStyles = makeStyles((theme) => ({
     root: {
       display: 'flex',
     },
     appBar: {
       zIndex: theme.zIndex.drawer + 1,
+      boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px', 
       transition: theme.transitions.create(['width', 'margin'], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,

@@ -53,6 +53,10 @@ const useStyles = makeStyles((theme) => ({
   },
   resetContainer: {
     padding: theme.spacing(3)
+  },
+  message: {
+    color: 'green',
+    margin: '2rem 0 0 0 '
   }
 }));
 
@@ -60,14 +64,14 @@ function getSteps() {
   return ["Select web service", "Create a chart"];
 }
 
-function VerticalStepper({setStep, step, setName, name, setData, data, setChartObject, chartObject, createChart}) {
+function VerticalStepper({setStep, step, setName, name, setData, data:{dataSet}, setChartObject, chartObject, createChart}) {
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
   const [message, setMessage] = useState('')
   const steps = getSteps();
   
   const handleNext = () => {
-    if(data.length > 0 && activeStep !== steps.length - 1) {
+    if(dataSet.length > 0 && activeStep !== steps.length - 1) {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
     if(step){
       setStep(false);
@@ -87,7 +91,7 @@ function VerticalStepper({setStep, step, setName, name, setData, data, setChartO
     setActiveStep(0);
     setStep(true);
     setName('Untitled');
-    setData([]);
+    setData({});
     setChartObject(null);
     setMessage('');
   };
@@ -134,7 +138,7 @@ function VerticalStepper({setStep, step, setName, name, setData, data, setChartO
       <Divider />
       {activeStep === steps.length && (
         <Paper style={{textAlign:'center'}} square elevation={0} className={classes.resetContainer}>
-          <Typography>
+          <Typography noWrap>
             All steps completed.
           </Typography>
           <Button
@@ -151,7 +155,8 @@ function VerticalStepper({setStep, step, setName, name, setData, data, setChartO
             >
             Publish
           </Button>
-          <p style={{color: 'green'}}>{message}</p>
+          <Typography className={classes.message} noWrap>{message}</Typography>
+
         </Paper>
       )}
     </div>

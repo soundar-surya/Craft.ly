@@ -1,7 +1,16 @@
-import { Fragment } from 'react'
+import { Fragment, useEffect } from 'react'
 import Chart from './charts/chart';
+import { useSelector } from 'react-redux'
+import { connect } from 'react-redux'
 
-function Inventory() {
+import { GET_CHARTS_REQUESTED } from '../../../redux/actions/index'
+
+function Inventory({getCharts}) {
+
+    // useEffect( () => {
+    //     getCharts()
+    // }, [])
+
     
     return(
         <div>
@@ -10,5 +19,8 @@ function Inventory() {
     );
 }
 
+// const mapDispatchToProps = dispatch => ({
+//     getCharts: () => dispatch({type: GET_CHARTS_REQUESTED}),
+//   })
 
 export default Inventory;

@@ -8,7 +8,7 @@ import Select from "@material-ui/core/Select";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 
-function ChartCustomization({dataFields, dataSet, setChartObject}) {
+function ChartCustomization({dataFields, data: {endpoint, dataSet}, setChartObject}) {
 
   const classes = useStyles();
 
@@ -20,6 +20,7 @@ function ChartCustomization({dataFields, dataSet, setChartObject}) {
                               yAxisLabelName: '',
                               xAxisLabelNames: [],
                               yAxisLabelData: [],
+                              endpoint: ''
                              }
     let totalLength = dataSet.length;
     let [chartType, setChartType] = useState('Bar');
@@ -45,19 +46,19 @@ function ChartCustomization({dataFields, dataSet, setChartObject}) {
       chartObject.xAxisLabelName = xAxisLabel;
       chartObject.yAxisLabelName = yAxisLabel;
       chartObject.label = label
-
-      // trim dataSet and filter the field names
+      chartObject.endpoint = endpoint
       dataSet.length = preferredLength;
-      dataSet.forEach(record => {
-        let fields = Object.keys(record);
-        fields.forEach(field => {
-          if(field == xAxisLabel) {
-            chartObject.xAxisLabelNames = [...chartObject.xAxisLabelNames, record[field]]
-          } else if(field == yAxisLabel) {
-            chartObject.yAxisLabelData= [...chartObject.yAxisLabelData, record[field]]
-          }
-        })
-      })
+      // trim dataSet and filter the field names
+      // dataSet.forEach(record => {
+      //   let fields = Object.keys(record);
+      //   fields.forEach(field => {
+      //     if(field == xAxisLabel) {
+      //       chartObject.xAxisLabelNames = [...chartObject.xAxisLabelNames, record[field]]
+      //     } else if(field == yAxisLabel) {
+      //       chartObject.yAxisLabelData= [...chartObject.yAxisLabelData, record[field]]
+      //     }
+      //   })
+      // })
 
       setChartObject(chartObject);
       //acknowledge user
