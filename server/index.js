@@ -21,42 +21,34 @@ let db = [
       yAxisLabelData: [],
       endpoint: 'https://corona.lmao.ninja/v2/states?sort&yesterday',
       name: 'Test 1'
-    },
-        {
-          "chartType": "Bar",
-          "label": "Cases Per Million",
-          "lengthOfTheFields": 5,
-          "xAxisLabelName": "state",
-          "yAxisLabelName": "casesPerOneMillion",
-          "xAxisLabelNames": [
-            "California",
-            "Texas",
-            "Florida",
-            "New York",
-            "Illinois"
-          ],
-          "yAxisLabelData": [
-            97323,
-            104274,
-            112768,
-            112124,
-            110297
-          ],
-          "endpoint": "https://corona.lmao.ninja/v2/",
-          "name": "Test 1"
-        }
+    }
   ];
-app.post('/create-chart', (req, res) => {
+app.post('/create-chart', async (req, res) => {
     let {payload} = req.body
     db = [...db, payload]
     console.log(db)
-    res.status(200).send(db)
+    let data = await loadData(db)
+    res.status(200).send(data)
 })
 
 app.get('/get-all-charts', async (req, res) => {
     // console.log(req)
     let data = await loadData(db) 
     // console.log('data: ', data)
+    res.status(200).send(data)
+})
+
+app.put('/modify-chart', async (req, res) => {
+    let {payload} = req.body
+    db.forEach(record => {
+        if(record.name == payload.name) {
+            record.chartType = payload.chartType
+            record.lengthOfTheFields = payload.lengthOfTheFields
+            record.label = payload.label
+        }
+    })
+    // console.log(req.body)
+    let data = await loadData(db)
     res.status(200).send(data)
 })
 
@@ -107,3 +99,30 @@ function mapData(match, target, source) {
         return res
     })
 }
+
+
+[
+    {
+      "chartType": "Bar",
+      "label": "Cases Per Million",
+      "lengthOfTheFields": 5,
+      "xAxisLabelName": "state",
+      "yAxisLabelName": "casesPerOneMillion",
+      "xAxisLabelNames": [
+        "California",
+        "Texas",
+        "Florida",
+        "New York",
+        "Illinois"
+      ],
+      "yAxisLabelData": [
+        97323,
+        104274,
+        112768,
+        112124,
+        110297
+      ],
+      "endpoint": "https://corona.lmao.ninja/v2/states?sort&yesterday",
+      "name": "Test 1"
+    }
+  ]

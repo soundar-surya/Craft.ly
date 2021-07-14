@@ -1,10 +1,11 @@
 import { Fragment, useState } from 'react'
+import { useSelector } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
+
 import RenderCharts from './renderCharts'
-import EditComponent from '../edit/edit'
 import ResizeChart from '../resize/resizeChart'
-import { useSelector } from 'react-redux'
+import EditComponent from '../edit/edit'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -12,7 +13,8 @@ const useStyles = makeStyles((theme) => ({
     },
     roundChartsStyle: {
         height:'47vh',
-        width:'30vw'
+        width:'30vw',
+        marginBottom: '8vh'
     }
   }));
 
@@ -42,7 +44,7 @@ function Chart() {
             )
         } else if (presentWorkingScreen === presentWorkingScreens[1]) {
             return (
-                <EditComponent />
+                <EditComponent chartObject={chartObject}/>
             )
         } else if (presentWorkingScreen === presentWorkingScreens[2]) {
             return (

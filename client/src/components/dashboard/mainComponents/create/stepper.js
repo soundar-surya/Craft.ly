@@ -71,7 +71,7 @@ function VerticalStepper({setStep, step, setName, name, setData, data:{dataSet},
   const steps = getSteps();
   
   const handleNext = () => {
-    if(dataSet.length > 0 && activeStep !== steps.length - 1) {
+    if(dataSet && dataSet.length > 0 && activeStep !== steps.length - 1) {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
     if(step){
       setStep(false);

@@ -5,6 +5,7 @@ import Groups from './groups';
 import Settings from './settings';
 import Contact from './contact';
 import Logout from './logout';
+import Edit from './edit/edit'
 
 function findCurrentComponent(currentComponent='') {
     if(currentComponent == 'Inventory') {
@@ -21,7 +22,9 @@ function findCurrentComponent(currentComponent='') {
         return <Contact />;
     } else if(currentComponent == 'Logout') {
         return <Logout />;
-    } 
+    } else if(currentComponent == 'Edit') {
+        return <Edit chartObject={null}/>
+    }
 };
 
 function main({content, toolbar, current}) {
