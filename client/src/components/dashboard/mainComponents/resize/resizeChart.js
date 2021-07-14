@@ -11,7 +11,6 @@ import PieChart from '../charts/pie'
 const useStyles = makeStyles((theme) => ({
     button: {
       margin: theme.spacing(1),
-      background: 'green'
     },
 }))
 

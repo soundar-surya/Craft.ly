@@ -44,7 +44,7 @@ function Chart() {
             )
         } else if (presentWorkingScreen === presentWorkingScreens[1]) {
             return (
-                <EditComponent chartObject={chartObject}/>
+                <EditComponent chartObject={chartObject} setPws={setPws}/>
             )
         } else if (presentWorkingScreen === presentWorkingScreens[2]) {
             return (

@@ -1,14 +1,30 @@
 import { useState } from 'react';
 import FormLabel from '@material-ui/core/FormLabel';
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, withStyles  } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
+import { connect } from 'react-redux'
+import MuButton from '@material-ui/core/Button'
+import KeyboardBackspaceRoundedIcon from '@material-ui/icons/KeyboardBackspaceRounded'
 
-function Modify({chartObject}) {
+
+import { MODIFY_CHART_REQUESTED } from '../../../../redux/actions'
+
+const ColorButton = withStyles((theme) => ({
+  root: {
+    color: theme.palette.getContrastText('#FF5757'),
+    backgroundColor: '#FF5757',
+    "&:hover": {
+      backgroundColor: '#ed6363'
+    }
+  }
+}))(MuButton)
+
+function Modify({chartObject, modifyChartObject, setPws}) {
     const classes = useStyles();
 let [chartType, setChartType] = useState(chartObject.chartType);
 let [message, setMessage] = useState('');
@@ -25,35 +41,25 @@ const modifyChart = () => {
     chartObject.chartType = chartType
     chartObject.lengthOfTheFields = preferredLength
     chartObject.label = label
-    console.log(chartObject)
+    // console.log(chartObject)
+    modifyChartObject(chartObject)
+    setMessage('Changes will soon be reflected in the dashboard.')
 }
-// const createChartObject = () => {
-// chartObject.chartType = chartType;
-// chartObject.lengthOfTheFields =  preferredLength;
-// chartObject.xAxisLabelName = xAxisLabel;
-// chartObject.yAxisLabelName = yAxisLabel;
-// chartObject.label = label
-// chartObject.endpoint = endpoint
-// dataSet.length = preferredLength;
-// // trim dataSet and filter the field names
-// // dataSet.forEach(record => {
-// //   let fields = Object.keys(record);
-// //   fields.forEach(field => {
-// //     if(field == xAxisLabel) {
-// //       chartObject.xAxisLabelNames = [...chartObject.xAxisLabelNames, record[field]]
-// //     } else if(field == yAxisLabel) {
-// //       chartObject.yAxisLabelData= [...chartObject.yAxisLabelData, record[field]]
-// //     }
-// //   })
-// // })
 
-// setChartObject(chartObject);
-// //acknowledge user
-// setMessage('Customization completed. click Finish to proceed further.');
-// }
+const handleClick = () => setPws('')
 
     return (
         <div>
+          <div>
+          <ColorButton
+                variant='contained'
+                className={classes.button}
+                startIcon={<KeyboardBackspaceRoundedIcon />}
+                onClick={handleClick}
+            >
+                Back
+            </ColorButton>
+          </div>
         <FormLabel style={{color: '#323235'}} component="legend">Re-craft the chart</FormLabel>
             <div>
               <FormControl variant="outlined" className={classes.formControl}>
@@ -109,14 +115,14 @@ const modifyChart = () => {
             <Button onClick={modifyChart} style={{background: '#FF5757', color: 'white'}}>Continue</Button>
               {message ? <p style={{color: 'green', fontSize:'1rem'}}>{message}</p> : null}
         </div>
- 
     )
 }
 
-export default Modify
+const mapDispatchToProps = dispatch => ({
+  modifyChartObject: chart => dispatch({type: MODIFY_CHART_REQUESTED, payload: chart})
+})
 
-
-
+export default connect(null, mapDispatchToProps)(Modify)
 
 
 // styles
@@ -128,5 +134,8 @@ var useStyles = makeStyles((theme) => ({
     },
     selectEmpty: {
       marginTop: theme.spacing(2)
-    }
+    },
+    button: {
+      margin: theme.spacing(1),
+    },
   }));
