@@ -11,7 +11,6 @@ function Routes({getCharts}) {
       getCharts()
   })
 
-
   return (
     <div>
       <Router>

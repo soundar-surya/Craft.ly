@@ -1,4 +1,4 @@
-import { Fragment, useState, useEffect, useRef } from 'react'
+import { Fragment, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import RenderCharts from './renderCharts'
@@ -18,15 +18,12 @@ const useStyles = makeStyles((theme) => ({
 
 function Chart() {
     let state = useSelector(({chartReducer: {arrayOfChartObjects}}) => arrayOfChartObjects)
-    console.log(state)
-    const test = useRef(null)
-    useEffect(() => (test.current), [state])
     const classes = useStyles();
     const chartTypes = ['Line', 'Bar', 'Pie', 'Doughnut']
     const presentWorkingScreens = ['resize', 'edit', 'embed'] 
     let [presentWorkingScreen, setPws] = useState('')
     let [chartObject, setChartObject] = useState(null)
-
+    
     const renderContent = () =>  {
         if(presentWorkingScreen === '') {
             return <RenderCharts 
@@ -45,7 +42,7 @@ function Chart() {
             )
         } else if (presentWorkingScreen === presentWorkingScreens[1]) {
             return (
-                <EditComponent ref={test}/>
+                <EditComponent />
             )
         } else if (presentWorkingScreen === presentWorkingScreens[2]) {
             return (

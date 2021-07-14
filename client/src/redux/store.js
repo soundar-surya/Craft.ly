@@ -8,7 +8,7 @@ import initialState from './initialState'
 const sagaMiddleware = createSagaMiddleware()
 const store = createStore(
     reducers,
-    initialState,
+    {chartReducer: initialState},
     applyMiddleware(sagaMiddleware)
 )
 sagaMiddleware.run(rootSaga)

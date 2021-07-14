@@ -4,7 +4,6 @@ import {
     CREATE_CHART,
     MODIFY_CHART,
     DELETE_CHART,
-    UPDATE_STATE
     } from '../actions'
 import initialState from '../initialState'
 
@@ -19,8 +18,6 @@ export default function chartReducer(state=initialState, {type, payload}) {
         case MODIFY_CHART:
             return {...state, arrayOfChartObjects: payload, loading: false}
         case DELETE_CHART:
-                return {...state, arrayOfChartObjects: payload, loading: false}
-        case UPDATE_STATE:
                 return {...state, arrayOfChartObjects: payload, loading: false}
         default:
             return state

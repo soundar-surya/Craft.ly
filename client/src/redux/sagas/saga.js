@@ -10,8 +10,6 @@ import {
     MODIFY_CHART_REQUESTED,
     DELETE_CHART,
     DELETE_CHART_REQUESTED,
-    UPDATE_STATE,
-    UPDATE_STATE_REQUESTED
 } from '../actions'
 
 import { 
@@ -19,7 +17,6 @@ import {
     getAllCharts,
     modifyChart,
     deleteChart,
-    updateState
  } from '../api/chartApi'
 
 
@@ -51,17 +48,9 @@ import {
     yield put({type: DELETE_CHART, payload: data})
  }
 
- function* updateStateSaga({payload}) {
-    yield put({type: SET_LOADING})
-
-    const data = yield call(updateState, payload)
-    yield put({type: UPDATE_STATE, payload: data})
- }
-
  export default function* watcherSaga() {
      yield takeEvery(GET_CHARTS_REQUESTED, getChartsSaga)
      yield takeLatest(CREATE_CHARTS_REQUESTED, createChartSaga)
      yield takeEvery(MODIFY_CHART_REQUESTED, modifyChartSaga)
      yield takeEvery(DELETE_CHART_REQUESTED, deleteChartSaga)
-     yield takeEvery(UPDATE_STATE_REQUESTED, updateStateSaga)
  }

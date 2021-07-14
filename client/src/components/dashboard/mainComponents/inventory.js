@@ -1,26 +1,23 @@
-import { Fragment, useEffect } from 'react'
 import Chart from './charts/chart';
 import { useSelector } from 'react-redux'
-import { connect } from 'react-redux'
 
-import { GET_CHARTS_REQUESTED } from '../../../redux/actions/index'
+import PreLoader from './preLoader'
 
-function Inventory({getCharts}) {
+function Inventory() {
 
-    // useEffect( () => {
-    //     getCharts()
-    // }, [])
-
-    
+    let state = useSelector(({chartReducer: {arrayOfChartObjects}}) => arrayOfChartObjects)
+    const renderContent = () => {
+        if(state.length == 0) {
+            return <div style={{display: 'flex', justifyContent: 'center', marginTop: '35vh'}}><PreLoader /></div>
+        } else {
+            return <Chart />
+        }
+    }
     return(
         <div>
-            <Chart />
+            {renderContent()}
         </div>
     );
 }
 
-// const mapDispatchToProps = dispatch => ({
-//     getCharts: () => dispatch({type: GET_CHARTS_REQUESTED}),
-//   })
-
-export default Inventory;
+export default Inventory
