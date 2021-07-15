@@ -48,18 +48,7 @@ function ChartCustomization({dataFields, data: {endpoint, dataSet}, setChartObje
       chartObject.label = label
       chartObject.endpoint = endpoint
       dataSet.length = preferredLength;
-      // trim dataSet and filter the field names
-      // dataSet.forEach(record => {
-      //   let fields = Object.keys(record);
-      //   fields.forEach(field => {
-      //     if(field == xAxisLabel) {
-      //       chartObject.xAxisLabelNames = [...chartObject.xAxisLabelNames, record[field]]
-      //     } else if(field == yAxisLabel) {
-      //       chartObject.yAxisLabelData= [...chartObject.yAxisLabelData, record[field]]
-      //     }
-      //   })
-      // })
-
+    
       setChartObject(chartObject);
       //acknowledge user
       setMessage('Customization completed. click Finish to proceed further.');
@@ -68,16 +57,16 @@ function ChartCustomization({dataFields, data: {endpoint, dataSet}, setChartObje
 
     return(
         <div>
-            <FormLabel style={{color: '#323235'}} component="legend">Customize the chart</FormLabel>
-            <div>
+            <FormLabel  component="legend">Customize the chart</FormLabel>
+            <div style={{margin: '2vh 0 0 0'}}>
               <FormControl variant="outlined" className={classes.formControl}>
-                <InputLabel id="demo-simple-select-outlined-label">
+                <InputLabel color="secondary" id="demo-simple-select-outlined-label">
                   Chart Type
                 </InputLabel>
                 <Select
-                  style={{ borderColor: "red" }}
-                  labelId="demo-simple-select-outlined-label"
-                  id="demo-simple-select-outlined"
+                  color="secondary"
+                  labelId="demo-simple-select-error-outlined"
+                  id="demo-simple-select-error-outlined"
                   value={chartType}
                   onChange={handleChange}
                   label="Chart Type"
@@ -91,11 +80,11 @@ function ChartCustomization({dataFields, data: {endpoint, dataSet}, setChartObje
             </div>
             <div>
               <FormControl variant="outlined" className={classes.formControl}>
-                <InputLabel id="demo-simple-select-outlined-label">
+                <InputLabel color="secondary" id="demo-simple-select-outlined-label">
                   length
                 </InputLabel>
                 <Select
-                  style={{ borderColor: "red" }}
+                  color="secondary"
                   labelId="demo-simple-select-outlined-label"
                   id="demo-simple-select-outlined"
                   value={preferredLength}
@@ -112,11 +101,11 @@ function ChartCustomization({dataFields, data: {endpoint, dataSet}, setChartObje
             </div>
             <div>
               <FormControl variant="outlined" className={classes.formControl}>
-                <InputLabel id="demo-simple-select-outlined-label">
+                <InputLabel color="secondary" id="demo-simple-select-outlined-label">
                   X-Axis
                 </InputLabel>
                 <Select
-                  style={{ borderColor: "red" }}
+                  color="secondary"
                   labelId="demo-simple-select-outlined-label"
                   id="demo-simple-select-outlined"
                   value={xAxisLabel}
@@ -133,11 +122,11 @@ function ChartCustomization({dataFields, data: {endpoint, dataSet}, setChartObje
             </div>
             <div>
               <FormControl variant="outlined" className={classes.formControl}>
-                <InputLabel id="demo-simple-select-outlined-label">
+                <InputLabel color="secondary" id="demo-simple-select-outlined-label">
                   Y-Axis
                 </InputLabel>
                 <Select
-                  style={{ borderColor: "red" }}
+                  color="secondary"
                   labelId="demo-simple-select-outlined-label"
                   id="demo-simple-select-outlined"
                   value={yAxisLabel}
@@ -159,10 +148,13 @@ function ChartCustomization({dataFields, data: {endpoint, dataSet}, setChartObje
                 label="label"
                 id="outlined-size-normal"
                 variant="outlined"
+                color="secondary"
+                className={classes.input}
+                style={{width: '10vw', margin: '2vh 0 0 0'}}
               />
             </div>
-            <Button onClick={createChartObject} style={{background: '#FF5757', color: 'white'}}>Continue</Button>
-              {message ? <p style={{color: 'green', fontSize:'1rem'}}>{message}</p> : null}
+            <Button onClick={createChartObject} style={{background: '#FF5757', color: 'white', margin: '4vh 0 0 0'}}>Continue</Button>
+              {message ? <p style={{color: 'green', fontSize:'1rem', margin: '5vh 0 0 0'}}>{message}</p> : null}
         </div>
     );
 }
@@ -174,11 +166,15 @@ export default ChartCustomization;
 // styles
 var useStyles = makeStyles((theme) => ({
   formControl: {
-    margin: theme.spacing(1),
+    margin: theme.spacing(2),
     minWidth: 200,
     maxWidth: 500
   },
   selectEmpty: {
     marginTop: theme.spacing(2)
+  },
+  input: {
+    minWidth: 200,
+    maxWidth: 300
   }
 }));

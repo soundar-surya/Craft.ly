@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import { useSelector } from 'react-redux';
 
 import Stepper from './stepper';
 import CreateChart from "./createChart";
@@ -25,9 +26,10 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function CSSGrid() {
+export default function CreateComponent() {
+  let state = useSelector(({chartReducer: {arrayOfChartObjects}}) => arrayOfChartObjects)
   const classes = useStyles();
-  const [name, setName] = useState('Untitled');
+  const [name, setName] = useState(`Untitled${state.length+1}`);
   const [step, setStep] = useState(true)
   const [data, setData] = useState({});
   const [chartObject, setChartObject] = useState(null);
@@ -42,7 +44,7 @@ export default function CSSGrid() {
           <Paper className={classes.paper}><Stepper setStep={setStep} step={step} name={name} setName={setName} data={data} chartObject={chartObject} setData={setData} setChartObject={setChartObject}/></Paper>
         </Grid>
         <Grid item xs={12} md={8} lg={9}>
-          <Paper className={classes.paper}>{step ?  <DataSource setName={setName} setData={setData} /> : (data.length == 0 ? <DataSource setName={setName} setData={setData}/> :  <CreateChart data={data} setChartObject={setChartObject}/>)}</Paper>
+          <Paper className={classes.paper}>{step ?  <DataSource setName={setName} setData={setData} name={name}/> : (data.length == 0 ? <DataSource setName={setName} setData={setData} name={name}/> :  <CreateChart data={data} setChartObject={setChartObject}/>)}</Paper>
         </Grid>
       </Grid>
       <Typography variant="subtitle1" gutterBottom className={classes.divider}>

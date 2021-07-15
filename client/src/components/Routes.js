@@ -3,12 +3,16 @@ import { connect } from 'react-redux'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 
 import Home from './home'
-import { GET_CHARTS_REQUESTED } from '../redux/actions'
+import { 
+  GET_CHARTS_REQUESTED,
+  GET_GROUPS_REQUESTED
+} from '../redux/actions'
 
-function Routes({getCharts}) {
+function Routes({getCharts, getGroups}) {
 
   useEffect( () => {
       getCharts()
+      getGroups()
   })
 
   return (
@@ -25,6 +29,7 @@ function Routes({getCharts}) {
 
 const mapDispatchToProps = dispatch => ({
   getCharts: () => dispatch({type: GET_CHARTS_REQUESTED}),
+  getGroups: () => dispatch({type: GET_GROUPS_REQUESTED})
 })
 
 export default connect(null, mapDispatchToProps)(Routes);

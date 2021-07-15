@@ -10,6 +10,13 @@ import {
     MODIFY_CHART_REQUESTED,
     DELETE_CHART,
     DELETE_CHART_REQUESTED,
+    GET_GROUPS,
+    GET_GROUPS_REQUESTED,
+    CREATE_GROUP,
+    CREATE_GROUP_REQUESTED,
+    ADD_USER,
+    ADD_USER_REQUESTED,
+
 } from '../actions'
 
 import { 
@@ -17,6 +24,9 @@ import {
     getAllCharts,
     modifyChart,
     deleteChart,
+    getAllGroups,
+    createGroup,
+    addUser
  } from '../api/chartApi'
 
 
@@ -48,9 +58,34 @@ import {
     yield put({type: DELETE_CHART, payload: data})
  }
 
+ function* getGroupsSaga() {
+    yield put({type: SET_LOADING})
+
+    const data = yield call(getAllGroups)
+    yield put({type: GET_GROUPS, payload: data})
+ }
+
+ function* createGroupSaga({payload}) {
+    yield put({type: SET_LOADING})
+
+    const data = yield call(createGroup, payload)
+    yield put({type: CREATE_GROUP, payload: data})
+ }
+
+ function* addUserSaga({payload}) {
+    yield put({type: SET_LOADING})
+
+    const data = yield call(addUser, payload)
+    yield put({type: ADD_USER, payload: data})
+ }
+
+
  export default function* watcherSaga() {
      yield takeEvery(GET_CHARTS_REQUESTED, getChartsSaga)
      yield takeLatest(CREATE_CHARTS_REQUESTED, createChartSaga)
      yield takeEvery(MODIFY_CHART_REQUESTED, modifyChartSaga)
      yield takeEvery(DELETE_CHART_REQUESTED, deleteChartSaga)
+     yield takeEvery(GET_GROUPS_REQUESTED, getGroupsSaga)
+     yield takeEvery(CREATE_GROUP_REQUESTED, createGroupSaga)
+     yield takeEvery(ADD_USER_REQUESTED, addUserSaga)
  }

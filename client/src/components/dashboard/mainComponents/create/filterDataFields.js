@@ -55,7 +55,7 @@ export default function FilterDataFields({data, setFilteredFields, setFilter}) {
 
   return (
       <div>
-        <FormLabel style={{color: '#323235'}} component="legend">Please choose your preferred fields</FormLabel>
+        <FormLabel  component="legend">Please choose your preferred fields</FormLabel>
         <div className={classes.root}>
         <FormControl component="fieldset" className={classes.formControl}>
         <FormGroup>{renderContent()}</FormGroup>

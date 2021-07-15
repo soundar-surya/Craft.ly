@@ -1,7 +1,8 @@
 let initialState = {
     loading: false,
     arrayOfChartObjects: [],
-    authToken: ''
+    authToken: '',
+    groups: []
 }
 
 export default initialState

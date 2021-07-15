@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, Fragment } from 'react';
 import FormLabel from '@material-ui/core/FormLabel';
 import { makeStyles, withStyles  } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -10,6 +10,7 @@ import TextField from "@material-ui/core/TextField";
 import { connect } from 'react-redux'
 import MuButton from '@material-ui/core/Button'
 import KeyboardBackspaceRoundedIcon from '@material-ui/icons/KeyboardBackspaceRounded'
+import Grid from '@material-ui/core/Grid'
 
 
 import { MODIFY_CHART_REQUESTED } from '../../../../redux/actions'
@@ -49,25 +50,37 @@ const modifyChart = () => {
 const handleClick = () => setPws('')
 
     return (
-        <div>
-          <div>
-          <ColorButton
+       <Fragment>
+         <Grid container  spacing={2} >
+              <Grid item style={{display: 'flex', justifyContent: 'flex-start'}} xs={6} sm={6} md={6} lg={6}>
+              <ColorButton
                 variant='contained'
                 className={classes.button}
                 startIcon={<KeyboardBackspaceRoundedIcon />}
                 onClick={handleClick}
-            >
-                Back
-            </ColorButton>
-          </div>
-        <FormLabel style={{color: '#323235'}} component="legend">Re-craft the chart</FormLabel>
-            <div>
+                >
+                  Back
+              </ColorButton>
+                </Grid>
+                <Grid item xs={6} sm={6} md={6} lg={6} key={'component'} style={{display: 'flex', justifyContent: 'flex-end'}}>
+                <ColorButton
+                  variant='contained'
+                  className={classes.button}
+                  onClick={modifyChart}
+                >
+                  Continue
+              </ColorButton>
+                </Grid>
+             </Grid>
+
+             <FormLabel style={{display: 'flex', justifyContent: 'center', margin: '1vh 0 0 0'}} component="legend">Re-craft the chart</FormLabel>
+            <div style={{display: 'flex', justifyContent: 'center', margin: '10vh 0 0 0'}}>
               <FormControl variant="outlined" className={classes.formControl}>
-                <InputLabel id="demo-simple-select-outlined-label">
+                <InputLabel color="secondary" id="demo-simple-select-outlined-label">
                   Chart Type
                 </InputLabel>
                 <Select
-                  style={{ borderColor: "red" }}
+                  color="secondary"
                   labelId="demo-simple-select-outlined-label"
                   id="demo-simple-select-outlined"
                   value={chartType}
@@ -81,13 +94,13 @@ const handleClick = () => setPws('')
               </Select>
             </FormControl>
             </div>
-            <div>
+            <div style={{display: 'flex', justifyContent: 'center'}}>
               <FormControl variant="outlined" className={classes.formControl}>
-                <InputLabel id="demo-simple-select-outlined-label">
+                <InputLabel color="secondary" id="demo-simple-select-outlined-label">
                   length
                 </InputLabel>
                 <Select
-                  style={{ borderColor: "red" }}
+                  color="secondary"
                   labelId="demo-simple-select-outlined-label"
                   id="demo-simple-select-outlined"
                   value={preferredLength}
@@ -102,8 +115,9 @@ const handleClick = () => setPws('')
               </Select>
             </FormControl>
             </div>
-            <div>
+            <div style={{display: 'flex', justifyContent: 'center', margin: '3vh 0 0 0'}}>
               <TextField
+                color="secondary"
                 onChange={handleLabel}
                 placeholder="Eg: Active Cases"
                 label="label"
@@ -112,9 +126,8 @@ const handleClick = () => setPws('')
                 value={label}
               />
             </div>
-            <Button onClick={modifyChart} style={{background: '#FF5757', color: 'white'}}>Continue</Button>
-              {message ? <p style={{color: 'green', fontSize:'1rem'}}>{message}</p> : null}
-        </div>
+            {message ? <p style={{color: 'green', fontSize:'1rem',display: 'flex', justifyContent: 'center', margin: '5vh 0 0 0'}}>{message}</p> : null}
+       </Fragment>
     )
 }
 
@@ -128,14 +141,14 @@ export default connect(null, mapDispatchToProps)(Modify)
 // styles
 var useStyles = makeStyles((theme) => ({
     formControl: {
-      margin: theme.spacing(1),
-      minWidth: 200,
-      maxWidth: 500
+      margin: theme.spacing(3),
+      minWidth: 225,
+      maxWidth: 300,
     },
     selectEmpty: {
       marginTop: theme.spacing(2)
     },
     button: {
-      margin: theme.spacing(1),
+      margin: theme.spacing(2),
     },
   }));

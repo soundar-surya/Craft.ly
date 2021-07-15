@@ -23,6 +23,36 @@ let db = [
       name: 'Test 1'
     }
   ];
+
+let user = [{name: 'surya'}]
+let admin = [{name: 'soundarsurya'}]
+let groups= [
+    {name: 'Sales Analysis', description:`Sales Analysis chart's group`, 
+    users:['orochimaru', 'haku', 'kimimaru', 'kabuto', 'kiba', 'neji', 'sakura', 'rock lee', 'kakashi', 'naruto', 'zabuza', 'inata', 'ino', 'choji', 'shikamaru', 'akamaru']},]
+
+app.get('/get-groups', async(req, res) => {
+    let data = [...groups].reverse()
+    res.status(200).send(data)
+})
+
+app.post('/create-group', async (req, res) => {
+    let { payload: {name, description, users=[]} } = req.body
+    groups = [...groups, {name, description, users}]
+    let data = [...groups].reverse()
+    res.status(200).send(data)
+})
+
+app.post('/add-user', async(req, res) => {
+    let {payload: {name: groupName, user}} = req.body
+    groups.forEach(({name, users}, index) => {
+        if(name === groupName) {
+            groups[index].users = [...users, user]
+        }
+    })
+    let data = [...groups].reverse()
+    res.status(200).send(data)
+})
+
 app.post('/create-chart', async (req, res) => {
     let {payload} = req.body
     db = [...db, payload]

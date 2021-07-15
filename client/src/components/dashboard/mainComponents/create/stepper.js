@@ -11,7 +11,8 @@ import { Divider } from "@material-ui/core";
 import FindInPageRoundedIcon from "@material-ui/icons/FindInPageRounded";
 import NoteAddRoundedIcon from "@material-ui/icons/NoteAddRounded";
 import clsx from "clsx";
-import { connect } from 'react-redux'; 
+import { connect, useSelector } from 'react-redux'; 
+
 
 import { CREATE_CHARTS_REQUESTED } from '../../../../redux/actions';
 
@@ -65,6 +66,7 @@ function getSteps() {
 }
 
 function VerticalStepper({setStep, step, setName, name, setData, data:{dataSet}, setChartObject, chartObject, createChart}) {
+  let state = useSelector(({chartReducer: {arrayOfChartObjects}}) => arrayOfChartObjects)
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
   const [message, setMessage] = useState('')
@@ -90,7 +92,7 @@ function VerticalStepper({setStep, step, setName, name, setData, data:{dataSet},
   const handleReset = () => {
     setActiveStep(0);
     setStep(true);
-    setName('Untitled');
+    setName(`Untitled${state.length+1}`);
     setData({});
     setChartObject(null);
     setMessage('');
@@ -99,7 +101,7 @@ function VerticalStepper({setStep, step, setName, name, setData, data:{dataSet},
   const handlePublish = () => {
     chartObject.name = name;
     createChart(chartObject);
-    setMessage('Graph has been created successfully.');
+    setMessage('Chart created successfully.');
   }
   
   return (

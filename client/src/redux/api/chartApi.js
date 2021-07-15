@@ -41,3 +41,33 @@ export const deleteChart = async title => {
         return []
     }
 }
+
+export const getAllGroups = async () => {
+    try{
+        const {data} = await axios.get(`${url}/get-groups`)
+        return data
+    } catch(e) {
+        console.log(e)
+        return []
+    }
+}
+
+export const createGroup = async payload => {
+    try{
+        const {data} = await axios.post(`${url}/create-group`, {payload})
+        return data
+    } catch(e) {
+        console.log(e)
+        return []
+    }
+}
+
+export const addUser = async payload => {
+    try{
+        const {data} = await axios.post(`${url}/add-user`, {payload})
+        return data
+    } catch(e) {
+        console.log(e)
+        return []
+    }
+}
