@@ -45,7 +45,7 @@ function BarChart({
           ],
         },
     }
-
+console.log('______________________________________-');
     return(
         <Fragment>
              <Grid container spacing={2} >

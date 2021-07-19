@@ -1,8 +1,8 @@
 import { Fragment } from 'react';
+import {useSelector} from 'react-redux'; 
 import { makeStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
-import FaceIcon from '@material-ui/icons/Face';
-import {useSelector} from 'react-redux'; 
+import EqualizerRoundedIcon from '@material-ui/icons/EqualizerRounded';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,21 +19,23 @@ const useStyles = makeStyles((theme) => ({
 export default function Users({groupName}) {
   const state = useSelector(({chartReducer: {groups}}) => groups)
   const classes = useStyles();
-  let {users} = state.find(({name}) => name === groupName)
-
-const renderContent = () => {
+  let {charts} = state.find(({name}) => name === groupName)
   
-    return users.map(user => {
+const renderContent = () => {
+  if(charts) {
+    return charts.map(chart => {
         return(
-            <Fragment>
+            <Fragment key={chart}>
                 <Chip
-                    icon={<FaceIcon />}
-                    label={user}
+                    icon={<EqualizerRoundedIcon />}
+                    label={chart}
                     variant="outlined"
                 />
             </Fragment>
         )
     })
+  }
+    
 }
 
   return (

@@ -16,7 +16,8 @@ import {
     CREATE_GROUP_REQUESTED,
     ADD_USER,
     ADD_USER_REQUESTED,
-
+    ADD_CHART,
+    ADD_CHART_REQUESTED
 } from '../actions'
 
 import { 
@@ -26,7 +27,8 @@ import {
     deleteChart,
     getAllGroups,
     createGroup,
-    addUser
+    addUser,
+    addChart
  } from '../api/chartApi'
 
 
@@ -79,6 +81,12 @@ import {
     yield put({type: ADD_USER, payload: data})
  }
 
+ function* addChartSaga({payload}) {
+   yield put({type: SET_LOADING})
+
+   const data = yield call(addChart, payload)
+   yield put({type: ADD_CHART, payload: data})
+}
 
  export default function* watcherSaga() {
      yield takeEvery(GET_CHARTS_REQUESTED, getChartsSaga)
@@ -88,4 +96,5 @@ import {
      yield takeEvery(GET_GROUPS_REQUESTED, getGroupsSaga)
      yield takeEvery(CREATE_GROUP_REQUESTED, createGroupSaga)
      yield takeEvery(ADD_USER_REQUESTED, addUserSaga)
+     yield takeEvery(ADD_CHART_REQUESTED, addChartSaga)
  }

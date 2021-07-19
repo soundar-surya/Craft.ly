@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 
 import Home from './home'
+import EmbedWidget from './dashboard/mainComponents/embedWidget/embedWidget'
+
 import { 
   GET_CHARTS_REQUESTED,
   GET_GROUPS_REQUESTED
@@ -20,6 +22,7 @@ function Routes({getCharts, getGroups}) {
       <Router>
         <Switch>
           <Route path='/' exact component={Home} />
+          <Route path='/embdwgt/:chartName' component={EmbedWidget} />
           <Route path='*'  component={() => <div>404 not found</div>} />
         </Switch>
       </Router>

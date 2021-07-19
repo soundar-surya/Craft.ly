@@ -10,6 +10,7 @@ import EditComponent from '../edit/edit'
 const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
+      margin: theme.spacing(2),
     },
     roundChartsStyle: {
         height:'47vh',
@@ -56,7 +57,7 @@ function Chart() {
     return(
         <Fragment>
             <div className={classes.root}>
-            <Grid container spacing={2}>
+            <Grid container spacing={1}>
                 {renderContent()}
             </Grid>
             </div>

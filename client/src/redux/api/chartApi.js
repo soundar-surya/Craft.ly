@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-const url = 'http://localhost:5000'
+// const url = 'http://localhost:5000'
+const url = 'https://craft-ly.herokuapp.com'
 
 export const createChart = async payload => {
     try{
@@ -65,6 +66,16 @@ export const createGroup = async payload => {
 export const addUser = async payload => {
     try{
         const {data} = await axios.post(`${url}/add-user`, {payload})
+        return data
+    } catch(e) {
+        console.log(e)
+        return []
+    }
+}
+
+export const addChart = async payload => {
+    try{
+        const {data} = await axios.post(`${url}/add-chart`, {payload})
         return data
     } catch(e) {
         console.log(e)
