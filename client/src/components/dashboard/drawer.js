@@ -11,7 +11,8 @@ import PeopleAltOutlinedIcon from '@material-ui/icons/PeopleAltOutlined';
 import SettingsApplicationsIcon from '@material-ui/icons/SettingsApplicationsOutlined';
 import LogoutIcon from '@material-ui/icons/PowerSettingsNewRounded';
 import PhoneTwoToneIcon from '@material-ui/icons/PhoneTwoTone';
-import EditTwoToneIcon from '@material-ui/icons/EditTwoTone';
+import StoreMallDirectoryRoundedIcon from '@material-ui/icons/StoreMallDirectoryRounded';
+// import EditTwoToneIcon from '@material-ui/icons/EditTwoTone';
 import clsx from 'clsx';
 
 import Logo from './logo';
@@ -22,9 +23,9 @@ function DrawerPanel({handleDrawerClose, open, classes, setCurrentComponent}) {
     const theme = useTheme();
     const sidebarPrimaryIcons = [{name: 'Inventory', icon: <ShoppingCartIcon />},
                                                   {name: 'Create', icon: <AddBoxIcon/>}, 
-                                                  {name: 'Edit', icon: <EditTwoToneIcon/>}, 
                                                   {name: 'Data', icon: <DataUsageIcon/>},                 
-                                                  {name: 'Groups', icon: <PeopleAltOutlinedIcon />}];
+                                                  {name: 'Groups', icon: <PeopleAltOutlinedIcon />},
+                                                  {name: 'Market', icon: <StoreMallDirectoryRoundedIcon/>}];
     const sidebarSecondaryIcons = [{name: 'Settings', icon: <SettingsApplicationsIcon />},
                                                         {name: 'Contact', icon: <PhoneTwoToneIcon />},
                                                         {name: 'Logout', icon: <LogoutIcon />} ];
