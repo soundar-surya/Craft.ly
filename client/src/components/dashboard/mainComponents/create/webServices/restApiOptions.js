@@ -7,6 +7,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import Paper from '@material-ui/core/Paper'
 
 import Fields from './fields';
 
@@ -16,7 +17,7 @@ function TabPanel(props) {
 
   return (
     <div
-      style={{boxShadow: 'rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px'}}
+      style={{background: '#F5F5F5', boxShadow: 'rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px'}}
       role="tabpanel"
       hidden={value !== index}
       id={`full-width-tabpanel-${index}`}
@@ -49,8 +50,13 @@ function a11yProps(index) {
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.paper,
-    width: 500,
+    // width: 500,
   },
+  tabs: {
+    flexGrow: 2,
+    maxWidth: 500,
+    boxShadow: 'rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px'
+  }
 }));
 
 export default function OptionTabs() {
@@ -69,7 +75,8 @@ export default function OptionTabs() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" color="" style={{boxShadow: 'rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px'}}>
+      {/* <AppBar position="static" color="default" style={{boxShadow: 'rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px'}}> */}
+      <Paper className={classes.tabs}>
         <Tabs
           value={value}
           onChange={handleChange}
@@ -82,7 +89,8 @@ export default function OptionTabs() {
           <Tab label="Headers" {...a11yProps(1)} />
           <Tab label="Body" {...a11yProps(2)} />
         </Tabs>
-      </AppBar>
+        </Paper>
+      {/* </AppBar> */}
       <SwipeableViews
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
         index={value}

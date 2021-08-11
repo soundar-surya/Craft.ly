@@ -107,7 +107,8 @@ var useStyles = makeStyles((theme) => ({
     }
   },
   title: {
-    margin: theme.spacing(4)
+    margin: theme.spacing(4),
+    width: '26vw'
   },
   ErrMessage: {
     color: 'red',
