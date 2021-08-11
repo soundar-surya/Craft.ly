@@ -1,4 +1,4 @@
-import React from 'react';
+import {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import SwipeableViews from 'react-swipeable-views';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -58,23 +58,23 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function OptionTabs() {
+export default function OptionTabs({setParams, setHeaders, setData}) {
   const classes = useStyles();
   const theme = useTheme();
-  let fields = { key: "",   value: "" };
-  const [value, setValue] = React.useState(0);
+  let [headersField, setHeadersField] = useState({ key: '', value: ''});
+  let [paramsField, setParamsField] = useState({ key: '', value: '' });
+  let [body, setBody] = useState();
+  const [value, setValue] = useState(0);
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-
-  const handleChangeIndex = (index) => {
-    setValue(index);
-  };
+  const handleChange = (event, newValue) => setValue(newValue)
+  const handleChangeIndex = index => setValue(index)
+  const onTextAreaInputChange = e => (setData(e.target.value))
+    // console.log()
+  useEffect(() => setParams(paramsField), [paramsField])
+  useEffect(() => setHeaders(headersField), [headersField])
 
   return (
     <div className={classes.root}>
-      {/* <AppBar position="static" color="default" style={{boxShadow: 'rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px'}}> */}
       <Paper className={classes.tabs}>
         <Tabs
           value={value}
@@ -89,20 +89,19 @@ export default function OptionTabs() {
           <Tab label="Body" {...a11yProps(2)} />
         </Tabs>
         </Paper>
-      {/* </AppBar> */}
       <SwipeableViews
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
         index={value}
         onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
-          <Fields params={fields} />
+          <Fields field={paramsField} setField={setParamsField} />
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-        <Fields params={fields} />
+        <Fields field={headersField} setField={setHeadersField} />
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
-          <textarea></textarea>
+          <textarea onChange={onTextAreaInputChange}></textarea>
         </TabPanel>
       </SwipeableViews>
     </div>

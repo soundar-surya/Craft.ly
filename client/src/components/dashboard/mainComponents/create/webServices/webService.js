@@ -1,4 +1,4 @@
-import {useState, Fragment} from 'react'
+import {useState, Fragment, useEffect} from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Tabs from '@material-ui/core/Tabs'
@@ -17,17 +17,19 @@ export default function WebServices({name, setName, setData}) {
   const classes = useStyles()
   const [message, setMessage] = useState()
   const [value, setValue] = useState(1)
-  
-  let [endpoint, setEndpoint] = useState('') //https://corona.lmao.ninja/v2/states?sort&yesterday
-  
+  let [endpoint, setEndpoint] = useState('')
+  let config = {method: '', url: '', headers: {}, data: {}}
+
   // fetch data from endpoint
   const fetchData = async () => {
+    config.data = JSON.stringify(JSON.parse(config.data))
+    // console.log(config)
       try{
-          const {data: res=[]} = await axios.get(endpoint);
+          const {data: res=[]} = await axios(config);
           console.log('check', endpoint)
           // check whether it's an array or object
           if(Array.isArray(res)){
-              setData({endpoint, dataSet: [...res]})
+              setData({config, dataSet: [...res]})
               setMessage('Data retrieved sucessfully.')
             } else {
                 setMessage('Insuffient data')
@@ -84,7 +86,7 @@ export default function WebServices({name, setName, setData}) {
         </Paper>
        </div> 
         {
-            value == 0 ? <Soap/> : (value == 1 ? <Rest/> : <GraphQL/>)
+            value == 0 ? <Soap/> : (value == 1 ? <Rest config={config} /> : <GraphQL/>)
         }
         <Button onClick={fetchData} style={{background: '#FF5757', color: 'white'}}>Fetch</Button>
           {
@@ -116,19 +118,18 @@ var useStyles = makeStyles((theme) => ({
   ErrMessage: {
     color: 'red',
     margin: '3vh 0 0 0',
-  
-    position: 'absolute'
   },
   successMessage: {
+    display: 'flex',
+    justifyContent: 'center',
     color: 'green',
-    margin: '3vh 0 0 32%',
-    position: 'absolute'
+    margin: '3vh 0 0 0',
   },
   note: {
     color: '#2b2d38',
     display: 'flex',
     justifyContent: 'center',
-    margin: '8vh 0 0 2vw',
+    margin: '7vh 0 0 2vw',
   },
   tabs: {
     flexGrow: 1,
