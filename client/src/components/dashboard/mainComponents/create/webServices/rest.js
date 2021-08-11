@@ -143,7 +143,7 @@ var useStyles = makeStyles((theme) => ({
   endpoint: {
     display: 'flex',
     justifyContent: 'center',
-    margin: '0 0 3vh 0'
+    margin: '0 0 3vh 0',
   },
   optionTabs: {
     display: 'flex',
@@ -152,8 +152,12 @@ var useStyles = makeStyles((theme) => ({
   },
   methodSelectField: {
     width: 115,
+    flexGrow: 1,
+    maxWidth: 200,
   },
   urlTextField: {
+    flexGrow: 1,
+    maxWidth: 380,
     width: '20vw',
   }
 }));

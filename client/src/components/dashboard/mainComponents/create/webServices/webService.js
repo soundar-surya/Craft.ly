@@ -86,13 +86,13 @@ export default function WebServices({name, setName, setData}) {
         {
             value == 0 ? <Soap/> : (value == 1 ? <Rest/> : <GraphQL/>)
         }
-        {/* <Button onClick={fetchData} style={{background: '#FF5757', color: 'white'}}>Fetch</Button> */}
+        <Button onClick={fetchData} style={{background: '#FF5757', color: 'white'}}>Fetch</Button>
           {
             (message === 'Someting went wrong.') ? <Typography className={classes.ErrMessage} noWrap>{message}</Typography> 
             : <Typography className={classes.successMessage} noWrap>{message}</Typography>
           }
     </form>
-    {/* <Typography className={classes.note} noWrap>Note: The API should return array of objects.</Typography> */}
+    <Typography className={classes.note} noWrap>Note: The API should return array of objects.</Typography>
       </Fragment>
   )
 }
@@ -108,21 +108,27 @@ var useStyles = makeStyles((theme) => ({
   },
   title: {
     margin: theme.spacing(4),
-    width: '26vw'
+    [theme.breakpoints.up('md')]: {
+      maxWidth: 700,
+      width: '35.5em',
+    },
   },
   ErrMessage: {
     color: 'red',
-    margin: '3vh 0 0 0'
+    margin: '3vh 0 0 0',
+  
+    position: 'absolute'
   },
   successMessage: {
     color: 'green',
-    margin: '3vh 0 0 0'
+    margin: '3vh 0 0 32%',
+    position: 'absolute'
   },
   note: {
     color: '#2b2d38',
     display: 'flex',
     justifyContent: 'center',
-    margin: '15vh 0 0 2vw'
+    margin: '8vh 0 0 2vw',
   },
   tabs: {
     flexGrow: 1,

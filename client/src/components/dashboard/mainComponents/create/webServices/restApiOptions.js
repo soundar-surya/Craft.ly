@@ -50,7 +50,6 @@ function a11yProps(index) {
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.paper,
-    // width: 500,
   },
   tabs: {
     flexGrow: 2,
@@ -103,7 +102,7 @@ export default function OptionTabs() {
         <Fields params={fields} />
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
-          <textarea>{}</textarea>
+          <textarea></textarea>
         </TabPanel>
       </SwipeableViews>
     </div>
