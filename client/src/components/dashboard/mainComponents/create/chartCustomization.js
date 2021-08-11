@@ -8,7 +8,7 @@ import Select from "@material-ui/core/Select";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 
-function ChartCustomization({dataFields, data: {endpoint, dataSet}, setChartObject}) {
+function ChartCustomization({dataFields, data: {config, dataSet}, setChartObject}) {
 
   const classes = useStyles();
 
@@ -20,7 +20,7 @@ function ChartCustomization({dataFields, data: {endpoint, dataSet}, setChartObje
                               yAxisLabelName: '',
                               xAxisLabelNames: [],
                               yAxisLabelData: [],
-                              endpoint: ''
+                              config: {}
                              }
     let totalLength = dataSet.length;
     let [chartType, setChartType] = useState('Bar');
@@ -46,7 +46,7 @@ function ChartCustomization({dataFields, data: {endpoint, dataSet}, setChartObje
       chartObject.xAxisLabelName = xAxisLabel;
       chartObject.yAxisLabelName = yAxisLabel;
       chartObject.label = label
-      chartObject.endpoint = endpoint
+      chartObject.config = config
       dataSet.length = preferredLength;
     
       setChartObject(chartObject);

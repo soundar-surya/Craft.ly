@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-// const url = 'http://localhost:5000'
-const url = 'https://craft-ly.herokuapp.com'
+const url = 'http://localhost:5000'
+// const url = 'https://craft-ly.herokuapp.com'
 
 export const createChart = async payload => {
     try{
