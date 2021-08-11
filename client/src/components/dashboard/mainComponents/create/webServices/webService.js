@@ -18,7 +18,7 @@ export default function WebServices({name, setName, setData}) {
   const [message, setMessage] = useState()
   const [value, setValue] = useState(1)
   
-  let [endpoint, setEndpoint] = useState('https://corona.lmao.ninja/v2/states?sort&yesterday')
+  let [endpoint, setEndpoint] = useState('') //https://corona.lmao.ninja/v2/states?sort&yesterday
   
   // fetch data from endpoint
   const fetchData = async () => {
@@ -47,6 +47,7 @@ export default function WebServices({name, setName, setData}) {
       <div>
       <Typography noWrap variant='h6'>Preliminary step</Typography>
         <TextField
+        className={classes.title}
         onChange={onInputChange}
         placeholder="Eg. Sales Analysis"
         label="Title"
@@ -92,7 +93,7 @@ export default function WebServices({name, setName, setData}) {
           }
     </form>
     {/* <Typography className={classes.note} noWrap>Note: The API should return array of objects.</Typography> */}
-    </Fragment>
+      </Fragment>
   )
 }
 
@@ -101,12 +102,12 @@ export default function WebServices({name, setName, setData}) {
 
 var useStyles = makeStyles((theme) => ({
   root: {
-    // "& .MuiTextField-root": {
-    //   margin: theme.spacing(6),
-    // },
     input: {
       color: 'red'
     }
+  },
+  title: {
+    margin: theme.spacing(4)
   },
   ErrMessage: {
     color: 'red',
@@ -125,11 +126,11 @@ var useStyles = makeStyles((theme) => ({
   tabs: {
     flexGrow: 1,
     maxWidth: 500,
-    // boxShadow: 'rgba(0, 0, 0, 0.1) 0px 4px 12px',
     boxShadow: 'rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px'
   },
   parentOfTabs: {
       display: 'flex', 
-      justifyContent: 'center'
+      justifyContent: 'center',
+      margin: '0 0 3.5vh 0'
     }
 }))

@@ -8,15 +8,20 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import Paper from '@material-ui/core/Paper'
 import axios from 'axios';
 
+import OptionTabs from './restApiOptions';
 
 export default function Rest({name, setName, setData}) {
 
+  const methods = ['GET', 'POST', 'PUT', 'DELETE']
   const classes = useStyles();
   const [message, setMessage] = useState();
-  let [endpoint, setEndpoint] = useState('https://corona.lmao.ninja/v2/states?sort&yesterday');
-  
+  let [endpoint, setEndpoint] = useState('https://corona.lmao.ninja/v2/states?sort&yesterday'); 
+  let [method, setMethod] = useState(methods[0]);
+
+
   // fetch data from endpoint
   const fetchData = async () => {
     try{
@@ -34,8 +39,9 @@ export default function Rest({name, setName, setData}) {
     } 
   }
 
-  const onInputChange = e => setName(e.target.value); 
-  const OnEndpointInputChange = e => setEndpoint(e.target.value);
+  const onInputChange = e => setName(e.target.value)
+  const onMethodChange = e => setMethod(e.target.value)
+  const OnEndpointInputChange = e => setEndpoint(e.target.value)
   
   return (
     <div className={classes.root}>
@@ -70,34 +76,35 @@ export default function Rest({name, setName, setData}) {
             : <Typography className={classes.successMessage} noWrap>{message}</Typography>
           }
     </form> */}
-        <div>
+      <div className={classes.endpoint}>    
         <FormControl variant="outlined" color="secondary" className={classes.formControl}>
             <InputLabel id="demo-simple-select-outlined-label">Method</InputLabel>
                 <Select
+                className={classes.methodSelectField}
                 labelId="demo-simple-select-outlined-label"
                 id="demo-simple-select-outlined"
-                value={''}
-                onChange={() => {}}
+                value={method}
+                onChange={onMethodChange}
                 label="Method"
                 >
-                <MenuItem value={10}>GET</MenuItem>
-                <MenuItem value={20}>POST</MenuItem>
-                <MenuItem value={30}>PUT</MenuItem>
-                <MenuItem value={30}>DELETE</MenuItem>
+                <MenuItem value={methods[0]}>GET</MenuItem>
+                <MenuItem value={methods[1]}>POST</MenuItem>
+                <MenuItem value={methods[2]}>PUT</MenuItem>
+                <MenuItem value={methods[3]}>DELETE</MenuItem>
                 </Select>
         </FormControl>
-        </div >
-        <div>
         <TextField
+        className={classes.urlTextField}
             onChange={OnEndpointInputChange}
-            placeholder="Eg. https://coviddata/v1/countries/"
-            label="Endpoint"
+            placeholder="Enter request URL"
+            label="URL"
             id="outlined-size-normal"
             variant="outlined"
             value={endpoint}
             color="secondary"
           />
         </div>
+        <div className={classes.optionTabs}><OptionTabs /></div>
     {/* <Typography className={classes.note} noWrap>Note: The API should return array of objects.</Typography> */}
     </div>
   );
@@ -107,14 +114,10 @@ export default function Rest({name, setName, setData}) {
 // styles
 
 var useStyles = makeStyles((theme) => ({
-  root: {
-    "& .MuiTextField-root": {
-      margin: theme.spacing(0),
-    },
+  root: { 
     input: {
       color: 'red'
     },
-    display: 'flex',
   },
   ErrMessage: {
     color: 'red',
@@ -133,10 +136,24 @@ var useStyles = makeStyles((theme) => ({
   webService: {
       display: 'flex',
       justifyContent: 'center',
-    //   margin: '1vh 0 0 0'
   },
   formControl: {
-    // margin: theme.spacing(1),
     minWidth: 120,
   },
+  endpoint: {
+    display: 'flex',
+    justifyContent: 'center',
+    margin: '0 0 3vh 0'
+  },
+  optionTabs: {
+    display: 'flex',
+    justifyContent: 'center',
+    margin: '0 0 3vh 0'
+  },
+  methodSelectField: {
+    width: 115,
+  },
+  urlTextField: {
+    width: '20vw',
+  }
 }));
