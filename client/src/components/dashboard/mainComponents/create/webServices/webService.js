@@ -18,15 +18,13 @@ export default function WebServices({name, setName, setData}) {
   const [message, setMessage] = useState()
   const [value, setValue] = useState(1)
   let [endpoint, setEndpoint] = useState('')
-  let config = {method: '', url: '', headers: {}, data: {}}
+  let config = {method: '', url: '', params: {}, headers: {}, data: {}}
 
   // fetch data from endpoint
   const fetchData = async () => {
     config.data = JSON.stringify(JSON.parse(config.data))
-    // console.log(config)
       try{
           const {data: res=[]} = await axios(config);
-          console.log('check', endpoint)
           // check whether it's an array or object
           if(Array.isArray(res)){
               setData({config, dataSet: [...res]})
