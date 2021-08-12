@@ -139,5 +139,10 @@ export const useStyles = makeStyles((theme) => ({
     customBadge: {
       backgroundColor: "#2a2a2b",
       color: "white"
+    },
+    mainContentWidth: {
+      [theme.breakpoints.down('sm')]: {
+        width: '85%'
+      },
     }
   }));

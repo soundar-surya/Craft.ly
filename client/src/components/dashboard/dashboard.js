@@ -210,9 +210,10 @@ export default function PersistentDrawerLeft(props) {
       {renderMobileMenu}
       {renderMenu}   
       <DrawerPanel handleDrawerClose={handleDrawerClose} open={open} classes={classes} setCurrentComponent={setCurrentComponent}/>      
-        <div style={{width: '85%'}}>
+        <div className={classes.mainContentWidth}>
           <Main content={classes.content}  toolbar={classes.toolbar} current={currentComponent} />
         </div>
     </div>
   );
 }
+
