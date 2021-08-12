@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
@@ -12,10 +13,9 @@ import SettingsApplicationsIcon from '@material-ui/icons/SettingsApplicationsOut
 import LogoutIcon from '@material-ui/icons/PowerSettingsNewRounded';
 import PhoneTwoToneIcon from '@material-ui/icons/PhoneTwoTone';
 import StoreMallDirectoryRoundedIcon from '@material-ui/icons/StoreMallDirectoryRounded';
-// import EditTwoToneIcon from '@material-ui/icons/EditTwoTone';
 import clsx from 'clsx';
 
-import Logo from './logo';
+import {Logo, ClyLogo} from './logo';
 import DrawerPanleIcons from './DrawerPanelIcons';
 
 function DrawerPanel({handleDrawerClose, open, classes, setCurrentComponent}) {
@@ -45,7 +45,7 @@ function DrawerPanel({handleDrawerClose, open, classes, setCurrentComponent}) {
                 }),
                 }} >
                 <div className={classes.drawer}> 
-                    <Logo />
+                    {open ? <Logo /> : <ClyLogo />}
                     <IconButton onClick={handleDrawerClose} style={{marginTop: '0.34em'}}>
                         {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
                     </IconButton>
