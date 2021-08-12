@@ -144,5 +144,6 @@ export const useStyles = makeStyles((theme) => ({
       [theme.breakpoints.down('sm')]: {
         width: '85%'
       },
+      width: '100%'
     }
   }));
