@@ -22,12 +22,23 @@ export default function WebServices({name, setName, setData}) {
 
   // fetch data from endpoint
   const fetchData = async () => {
-    config.data = JSON.stringify(JSON.parse(config.data))
+    config.data = JSON.parse(config.data)
+    let parseConfig = {method: config.method, url: config.url}
+    if(Object.keys(config.params)[0]) {
+      parseConfig.params = config.params
+    }
+    if(Object.keys(config.headers)[0]) {
+      parseConfig.headers = config.headers
+    }
+    if(config.data !== null && Object.keys(config.data).length > 0) {
+      parseConfig.data = config.data
+    }
       try{
-          const {data: res=[]} = await axios(config);
+          const {data: res=[]} = await axios(parseConfig);
           // check whether it's an array or object
           if(Array.isArray(res)){
-              setData({config, dataSet: [...res]})
+            console.log(parseConfig)
+              setData({config:parseConfig, dataSet: [...res]})
               setMessage('Data retrieved sucessfully.')
             } else {
                 setMessage('Insuffient data')

@@ -61,15 +61,15 @@ const useStyles = makeStyles((theme) => ({
 export default function OptionTabs({setParams, setHeaders, setData}) {
   const classes = useStyles();
   const theme = useTheme();
-  let [headersField, setHeadersField] = useState({ key: '', value: ''});
-  let [paramsField, setParamsField] = useState({ key: '', value: '' });
+  let [headersField, setHeadersField] = useState({ ['']: ''});
+  let [paramsField, setParamsField] = useState({ ['']: ''});
   let [body, setBody] = useState();
   const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => setValue(newValue)
   const handleChangeIndex = index => setValue(index)
   const onTextAreaInputChange = e => (setData(e.target.value))
-    // console.log()
+
   useEffect(() => setParams(paramsField), [paramsField])
   useEffect(() => setHeaders(headersField), [headersField])
 

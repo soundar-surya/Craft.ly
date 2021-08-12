@@ -27,16 +27,16 @@ const useStyles = makeStyles((theme) => ({
 export default function Fields({field, setField}) {
   const classes = useStyles()
 
-  let onInputKeyChange = e => setField(({key, value}) => ({key: e.target.value, value}))
+  let onInputKeyChange = e => setField( obj => ({[`${e.target.value}`]: Object.values(obj)[0]}))
     
-  let onInputValueChange = e => setField(({key, value}) => ({key, value: e.target.value}))
+  let onInputValueChange = e => setField( obj => ({[`${Object.keys(obj)[0]}`]: e.target.value}))
   
 //   console.log(field)
   return (
     <form className={classes.root} noValidate autoComplete="off">
       <TextField
         margin="dense"
-        value={field.key}
+        value={Object.keys(field)[0]}
         onChange = {onInputKeyChange}
         InputProps={{ classes: { input: classes.input } }}
         className={classes.field1}
@@ -47,7 +47,7 @@ export default function Fields({field, setField}) {
       />
       <TextField
         margin="dense"
-        value={field.value}
+        value={Object.values(field)[0]}
         onChange={onInputValueChange}
         InputProps={{ classes: { input: classes.input } }}
         className={classes.field2}

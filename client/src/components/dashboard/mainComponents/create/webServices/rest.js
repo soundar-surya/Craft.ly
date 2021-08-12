@@ -64,7 +64,13 @@ export default function Rest({config}) {
             color="secondary"
           />
         </div>
-        <div className={classes.optionTabs}><OptionTabs setParams={setParams} setHeaders={setHeaders} setData={setRestApiData}/></div>
+        <div className={classes.optionTabs}>
+          <OptionTabs
+            setParams={setParams}
+            setHeaders={setHeaders} 
+            setData={setRestApiData}
+          />
+        </div>
     </div>
   );
 }
