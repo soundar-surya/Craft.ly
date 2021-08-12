@@ -69,16 +69,6 @@ export default function WebServices({name, setName, setData}) {
           />
       </div>
       <div class={classes.parentOfTabs}>
-        {/* <TextField
-        onChange={OnEndpointInputChange}
-        placeholder="Eg. https://coviddata/v1/countries/"
-          label="Endpoint"
-          id="outlined-size-normal"
-          variant="outlined"
-          value={endpoint}
-          color="secondary"
-          /> */}
-
         <Paper className={classes.tabs}>
         <Tabs
             value={value}
@@ -139,6 +129,9 @@ var useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     margin: '7vh 0 0 2vw',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '3vw'
+    },
   },
   tabs: {
     flexGrow: 1,
