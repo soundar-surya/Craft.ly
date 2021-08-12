@@ -14,7 +14,10 @@ export const useStyles = makeStyles((theme) => ({
         duration: theme.transitions.duration.leavingScreen,
     }),
     background: '#FF5757',
-    height: '4.58rem'
+    height: '4.58rem',
+    [theme.breakpoints.down('sm')]: {
+      height: '4em',
+    }
     },
     appBarShift: {
       marginLeft: drawerWidth,
@@ -26,7 +29,6 @@ export const useStyles = makeStyles((theme) => ({
     },
     menuButton: {
       marginRight: 36,
-
     },
     hide: {
       display: 'none',
@@ -37,7 +39,10 @@ export const useStyles = makeStyles((theme) => ({
       whiteSpace: 'nowrap',
       display: 'flex',
       justifyContent:"center",
-      paddingBottom: '16px'
+      paddingBottom: '16px',
+      [theme.breakpoints.down('sm')]: {
+        paddingBottom: '0px',
+      }
     },
     drawerOpen: {
       width: drawerWidth,
@@ -70,7 +75,6 @@ export const useStyles = makeStyles((theme) => ({
       flexGrow: 1,
       padding: theme.spacing(3),
     },
-
     grow: {
       flexGrow: 2,
     },

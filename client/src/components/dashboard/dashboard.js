@@ -6,11 +6,9 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import AppsSharpIcon from '@material-ui/icons/AppsSharp';
-
 import {useScrollTrigger} from '@material-ui/core';
 import {Slide} from '@material-ui/core';
 import PropTypes from 'prop-types';
-
 import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
@@ -22,8 +20,6 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import Avatar from '@material-ui/core/Avatar';
-
-
 import {useStyles} from './styles/style';
 import DrawerPanel from './drawer';
 import Main from './mainComponents/main';
@@ -131,16 +127,12 @@ export default function PersistentDrawerLeft(props) {
           aria-haspopup="true"
           color="inherit"
         >
-          {/* <AccountCircle /> */}
           <Avatar alt="Remy Sharp" src="https://avatars.githubusercontent.com/u/67203625?v=4" />
         </IconButton>
         <p>Profile</p>
       </MenuItem>
     </Menu>
   );
-
-
-
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -167,10 +159,6 @@ export default function PersistentDrawerLeft(props) {
               className={clsx(classes.menuButton, open && classes.hide)} >
                 <AppsSharpIcon />
           </IconButton>
-          {/* <Typography variant="h6" noWrap>
-              Dashboard
-          </Typography> */}
-
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
@@ -184,7 +172,6 @@ export default function PersistentDrawerLeft(props) {
               inputProps={{ 'aria-label': 'search' }}
             />
           </div>
-
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton aria-label="show 4 new mails" color="inherit">
@@ -204,8 +191,7 @@ export default function PersistentDrawerLeft(props) {
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
               color="inherit"
-            >
-              {/* <AccountCircle /> */}
+              >
               <Avatar alt="Soundarsurya" src="https://avatars.githubusercontent.com/u/67203625?v=4" />
             </IconButton>
           </div>
@@ -220,15 +206,15 @@ export default function PersistentDrawerLeft(props) {
               <MoreIcon />
             </IconButton>
           </div>
-
-
         </Toolbar>
       </AppBar>
       </HideOnScroll>
       {renderMobileMenu}
       {renderMenu}   
       <DrawerPanel handleDrawerClose={handleDrawerClose} open={open} classes={classes} setCurrentComponent={setCurrentComponent}/>      
-        <Main content={classes.content}  toolbar={classes.toolbar} current={currentComponent}/>
+        <div style={{width: '85%'}}>
+          <Main content={classes.content}  toolbar={classes.toolbar} current={currentComponent} />
+        </div>
     </div>
   );
 }
