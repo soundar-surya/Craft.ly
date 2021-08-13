@@ -59,16 +59,6 @@ export default function CreateComponent() {
           <Paper className={classes.paper1}>{step ?  <DataSource setName={setName} setData={setData} name={name}/> : (data.length == 0 ? <DataSource setName={setName} setData={setData} name={name}/> :  <CreateChart data={data} setChartObject={setChartObject}/>)}</Paper>
         </Grid>
       </Grid>
-      <Typography variant="subtitle1" gutterBottom className={classes.divider}>
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={6} lg={6} style={{textAlign:'center'}}>
-            crafted with ❤️ by <span style={{color:'#FF5757'}}>Craft.ly</span>
-          </Grid>
-          <Grid item xs={12} md={6} lg={6} style={{textAlign:'center'}}>
-        &copy; 2021 Craft.ly
-          </Grid>
-        </Grid>
-      </Typography>
     </div>
   );
 }

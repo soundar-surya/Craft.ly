@@ -141,7 +141,7 @@ export default function PersistentDrawerLeft(props) {
   };
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} >
       <CssBaseline />
       <HideOnScroll>
       <AppBar
@@ -210,7 +210,7 @@ export default function PersistentDrawerLeft(props) {
       {renderMobileMenu}
       {renderMenu}   
       <DrawerPanel handleDrawerClose={handleDrawerClose} open={open} classes={classes} setCurrentComponent={setCurrentComponent}/>      
-        <div className={classes.mainContentWidth}>
+        <div className={classes.mainContentWidth} >
           <Main content={classes.content}  toolbar={classes.toolbar} current={currentComponent} />
         </div>
     </div>
