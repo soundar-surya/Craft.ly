@@ -9,44 +9,32 @@ import Logo from '../assets/logo.png';
 
 import Dashboard from './dashboard/dashboard'
 
-const x = {
-  margin:'0',
-  padding:'0',  
-  display:'flex',
-  flexDirection:'column',
-  justifyContent:'space-between',
-  minHeight:'100vh'
-}
-
 function Home() {
 
     return(
       <div>
         <Dashboard/>
-        <footer>
-          {/* <hr/> */}
-          <AppBar position="static">
+        <div style={{bottom: 0}}><footer>
+          <AppBar position="static" style={{background: '#f5f5f5',bototm: 0, boxShadow: 'rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px'}}>
         <Toolbar variant="dense">
+        <Grid container spacing={2}>
+        <Grid item xs={12} md={6} lg={6} style={{textAlign:'center', color: 'black'}}>
+            crafted with <span style={{color:'#FF5757'}}>&#10084;</span> by <span style={{color:'#FF5757', width: '1em'}}>Craft.ly</span>
+            <img src={Logo} style={{width: '2em', height: '1em'}}/>
+          </Grid>
+          <Grid item xs={12} md={6} lg={6} style={{textAlign:'center', color: 'black'}}>
+        &copy; 2021 Craft.ly
+          </Grid>
+        </Grid>
           {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton> */}
-          {/* <Typography variant="h6" color="inherit">
+          {/* <Typography variamnt="h6" color="inherit">
             Photos
           </Typography> */}
         </Toolbar>
       </AppBar>
-        {/* <Typography variant="subtitle1" gutterBottom>
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={6} lg={6} style={{textAlign:'center'}}>
-            crafted with <span style={{color:'#FF5757'}}>&#10084;</span> by <span style={{color:'#FF5757', width: '1em'}}>Craft.ly</span>
-            <img src={Logo} style={{width: '2em', height: '1em'}}/>
-          </Grid>
-          <Grid item xs={12} md={6} lg={6} style={{textAlign:'center'}}>
-        &copy; 2021 Craft.ly
-          </Grid>
-        </Grid>
-      </Typography> */}
-        </footer>
+        </footer></div>
       </div>
     )
   }
