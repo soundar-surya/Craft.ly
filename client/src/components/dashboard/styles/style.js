@@ -95,8 +95,8 @@ export const useStyles = makeStyles((theme) => ({
         backgroundColor: alpha(theme.palette.common.white, 0.25),
       },
       // marginRight: theme.spacing(2),
-      marginLeft:theme.spacing(2),
-      width: '35%',
+      marginLeft:theme.spacing(7),
+      width: '38%',
       [theme.breakpoints.up('sm')]: {
         marginLeft: theme.spacing(3),
         width: 'auto',
