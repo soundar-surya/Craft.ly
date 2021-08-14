@@ -20,7 +20,7 @@ function renderTable({state}) {
     
     return(
         <div>
-            {renderContent()}
+            {/* {renderContent()} */}
         </div>
     )
 

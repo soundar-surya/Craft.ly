@@ -17,7 +17,7 @@ export const useStyles = makeStyles((theme) => ({
     height: '4.58rem',
     [theme.breakpoints.down('sm')]: {
       height: '4em',
-    }
+    },
     },
     appBarShift: {
       marginLeft: drawerWidth,
@@ -73,6 +73,9 @@ export const useStyles = makeStyles((theme) => ({
     },
     content: {
       flexGrow: 1,
+      [theme.breakpoints.up('sm')]: {
+        margin: '3.5em 0 0 0'
+      },
       padding: theme.spacing(3),
     },
     grow: {
