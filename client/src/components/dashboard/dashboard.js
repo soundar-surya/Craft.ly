@@ -209,7 +209,7 @@ export default function PersistentDrawerLeft(props) {
       </HideOnScroll>
       {renderMobileMenu}
       {renderMenu}   
-      <DrawerPanel handleDrawerClose={handleDrawerClose} open={open} classes={classes} setCurrentComponent={setCurrentComponent}/>      
+      <DrawerPanel handleDrawerClose={handleDrawerClose} open={open} classes={classes} current={currentComponent} setCurrentComponent={setCurrentComponent}/>      
         <div className={classes.mainContentWidth} >
           <Main content={classes.content}  toolbar={classes.toolbar} current={currentComponent} />
         </div>
