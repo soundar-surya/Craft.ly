@@ -20,9 +20,7 @@ function renderTable({state}) {
     
     return(
         <div>
-            {/* {renderContent()} */}
-
-            <iframe style={{border:'none'}} src="https://docs.google.com/spreadsheets/d/13AYa_KApafH49LD9fliwwb5FeZCBwDL0Qf_6-CQFQFo/edit"  height="800" width="100%"/>
+            {renderContent()}
         </div>
     )
 
