@@ -12,7 +12,15 @@ const useStyles = makeStyles((theme) => ({
     '& > *': {
       margin: theme.spacing(0.5),
     },
-    margin: '4vh 5vw 0 5vw',
+    margin: '2vh 0 2vh 0',
+  },
+  iconColor: {
+    color: 'white',
+  },
+  chipColor: {
+    color: 'white', 
+    background: '#FF5757', 
+    border: 'none'
   }
 }));
 
@@ -22,12 +30,13 @@ export default function Users({groupName}) {
   let {users} = state.find(({name}) => name === groupName)
 
 const renderContent = () => {
-  
     return users.map(user => {
         return(
             <Fragment>
+
                 <Chip
-                    icon={<FaceIcon />}
+                    className={classes.chipColor}
+                    icon={<FaceIcon  className={classes.iconColor}/>}
                     label={user}
                     variant="outlined"
                 />
@@ -38,6 +47,7 @@ const renderContent = () => {
 
   return (
     <div className={classes.root}>
+
         {renderContent()}
     </div>
   );

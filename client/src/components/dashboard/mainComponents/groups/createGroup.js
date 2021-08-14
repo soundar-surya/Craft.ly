@@ -25,10 +25,9 @@ function CreateGroup({setPrimary, createGroup}) {
   return (
     <Fragment>
     <form className={classes.root} noValidate autoComplete="off">
-      <Typography noWrap variant='h6'>New group</Typography>
+      <Typography noWrap variant='subtitle1'>New group</Typography>
       <div className={classes.inputBox}>
         <TextField
-        
         onChange={handleNameChange}
         placeholder="Eg. Sales Analysis group"
         label="Name"
@@ -71,7 +70,7 @@ var useStyles = makeStyles((theme) => ({
     input: {
       color: 'red',
     },
-    margin: '5vh 0 0 0'
+    margin: '1vh 0 0 0'
   },
   inputBox: {
     margin: '5vh 0 0 0'
