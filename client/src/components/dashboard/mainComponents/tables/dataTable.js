@@ -17,7 +17,6 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up('sm')]: {
       // width: '50vw',
     },
-    // minWidth: 60,
   },
 }));
 

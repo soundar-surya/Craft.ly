@@ -82,3 +82,13 @@ export const addChart = async payload => {
         return []
     }
 }
+
+export const getUsers = async () => {
+    try{
+        const {data} = await axios.get(`${url}/get-users`)
+        return data
+    } catch(e) {
+        console.log(e)
+        return []
+    }
+}

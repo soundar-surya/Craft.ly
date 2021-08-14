@@ -5,9 +5,8 @@ function renderTable({state}) {
     let tableBody = state.map(({xAxisLabelNames, yAxisLabelData}) => ({xAxisLabelNames, yAxisLabelData}) )
 
     const renderContent = () => (
-        // style={{margin: '0vh 0vw 0vh 0vw', width: '100%'}}
         tableBody.map((body, i) => (
-            <div >
+            <div style={{margin: i!== 0 ? '2vh 0vw 0vh 0vw' : ''}}>
             <DataTable 
             tableHead={tableHead}
             tableBody={body}

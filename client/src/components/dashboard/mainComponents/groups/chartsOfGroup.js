@@ -12,7 +12,15 @@ const useStyles = makeStyles((theme) => ({
     '& > *': {
       margin: theme.spacing(0.5),
     },
-    margin: '4vh 5vw 0 5vw',
+    margin: '2vh 0 02vh 0',
+  },
+  iconColor: {
+    color: 'white',
+  },
+  chipColor: {
+    color: 'white', 
+    background: '#FF5757', 
+    border: 'none'
   }
 }));
 
@@ -27,7 +35,8 @@ const renderContent = () => {
         return(
             <Fragment key={chart}>
                 <Chip
-                    icon={<EqualizerRoundedIcon />}
+                    className={classes.chipColor}
+                    icon={<EqualizerRoundedIcon className={classes.iconColor}/>}
                     label={chart}
                     variant="outlined"
                 />

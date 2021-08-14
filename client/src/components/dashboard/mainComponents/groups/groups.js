@@ -24,8 +24,29 @@ const useStyles = makeStyles((theme) => ({
     height: 700,
     boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px'
   },
+  paper1: {
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+    whiteSpace: 'nowrap',
+    marginBottom: theme.spacing(5),
+    height: 700,
+    boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px'
+  },
+  paper2: {
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+    whiteSpace: 'nowrap',
+    marginBottom: theme.spacing(5),
+    [theme.breakpoints.down('xs')]: {
+      height: 600
+    },
+    height: 700,
+    boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px'
+  },
   titleMargin: {
-    margin: '3vh 0 0 0'
+    margin: '1vh 0 0 0'
   } 
 }));
 
@@ -38,27 +59,17 @@ export default function CreateComponent() {
     <div>
       <Grid container spacing={5}>
         <Grid item xs={12} md={4} lg={3}>
-          <Paper className={classes.paper}>
+          <Paper className={classes.paper2}>
               <Typography variant="subtitle1" className={classes.titleMargin} gutterBottom>Groups</Typography>
                 <SearchGroup setPrimary={setPrimary} selectGroup={selectGroup} setSelectGroup={setSelectGroup}/>
         </Paper>
         </Grid>
         <Grid item xs={12} md={8} lg={9}>
-          <Paper className={classes.paper}>
+          <Paper className={classes.paper1}>
                 <ManageGroup primary={primary} setPrimary={setPrimary} selectGroup={selectGroup}/>
           </Paper>
         </Grid>
       </Grid>
-      <Typography variant="subtitle1" gutterBottom>
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={6} lg={6} style={{textAlign:'center'}}>
-            crafted with ❤️ by <span style={{color:'#FF5757'}}>Craft.ly</span>
-          </Grid>
-          <Grid item xs={12} md={6} lg={6} style={{textAlign:'center'}}>
-        &copy; 2021 Craft.ly
-          </Grid>
-        </Grid>
-      </Typography>
     </div>
   );
 }

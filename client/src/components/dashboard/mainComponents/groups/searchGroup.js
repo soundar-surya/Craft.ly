@@ -21,7 +21,10 @@ const useStyles = makeStyles((theme) => ({
       "rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px"
   },
   input: {
-    marginLeft: theme.spacing(0),
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '1em',
+    },
+    width: '1px',
     flex: 1
   },
   iconButton: {
