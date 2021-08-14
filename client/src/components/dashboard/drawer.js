@@ -18,7 +18,7 @@ import clsx from 'clsx';
 import {Logo, ClyLogo} from './logo';
 import DrawerPanleIcons from './DrawerPanelIcons';
 
-function DrawerPanel({handleDrawerClose, open, classes, setCurrentComponent}) {
+function DrawerPanel({handleDrawerClose, open, classes, current, setCurrentComponent}) {
 
     const theme = useTheme();
     const sidebarPrimaryIcons = [{name: 'Inventory', icon: <ShoppingCartIcon />},
@@ -51,9 +51,13 @@ function DrawerPanel({handleDrawerClose, open, classes, setCurrentComponent}) {
                     </IconButton>
                 </div>
                 <Divider />
-                    <DrawerPanleIcons  list={sidebarPrimaryIcons} setCurrentComponent={setCurrentComponent}/>
+                    <DrawerPanleIcons  list={sidebarPrimaryIcons} current={current} setCurrentComponent={setCurrentComponent}/>
                 <Divider />
-                <DrawerPanleIcons list={sidebarSecondaryIcons} setCurrentComponent={setCurrentComponent}/>
+                <DrawerPanleIcons list={sidebarSecondaryIcons} current={current} setCurrentComponent={setCurrentComponent}/>
+                {/* <div style={{margin:'3vh 0 0 0'}}>
+                <DrawerPanleIcons list={sidebarSecondaryIcons} current={current} setCurrentComponent={setCurrentComponent}/> */}
+
+                {/* </div> */}
             </Drawer>
         </div>
     );
