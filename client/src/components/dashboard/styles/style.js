@@ -77,7 +77,7 @@ export const useStyles = makeStyles((theme) => ({
         margin: '3.5em 0 0 0'
       },
       padding: theme.spacing(3),
-    },
+    }, 
     grow: {
       flexGrow: 2,
     },
