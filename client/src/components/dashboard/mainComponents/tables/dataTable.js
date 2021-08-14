@@ -12,11 +12,14 @@ import Typography from '@material-ui/core/Typography'
 
 import Export from './exportXLSX'
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   table: {
-    minWidth: 650,
+    [theme.breakpoints.up('sm')]: {
+      // width: '50vw',
+    },
+    // minWidth: 60,
   },
-});
+}));
 
 export default function AcccessibleTable({ tableHead, tableBody: {xAxisLabelNames, yAxisLabelData}, name }) {
 
