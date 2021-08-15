@@ -74,7 +74,7 @@ export const useStyles = makeStyles((theme) => ({
     content: {
       flexGrow: 1,
       [theme.breakpoints.up('sm')]: {
-        margin: '3.5em 0 0 0'
+        // margin: '3.5em 0 0 0'
       },
       padding: theme.spacing(3),
     }, 
@@ -148,6 +148,6 @@ export const useStyles = makeStyles((theme) => ({
         width: '85%'
       },
       width: '100%',
-      minHeight: '100vh', 
+      minHeight: '95vh', 
     }
   }));

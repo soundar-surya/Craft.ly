@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
   paper1: {
     padding: theme.spacing(1),
+    borderRadius: '10px',
     textAlign: 'center',
     color: theme.palette.text.secondary,
     whiteSpace: 'nowrap',
@@ -26,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
   paper2: {
     padding: theme.spacing(1),
+    borderRadius: '10px',
     textAlign: 'center',
     color: theme.palette.text.secondary,
     whiteSpace: 'nowrap',
