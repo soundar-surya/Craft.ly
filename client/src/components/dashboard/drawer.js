@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import clsx from 'clsx';
 import { useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
@@ -13,7 +13,12 @@ import SettingsApplicationsIcon from '@material-ui/icons/SettingsApplicationsOut
 import LogoutIcon from '@material-ui/icons/PowerSettingsNewRounded';
 import PhoneTwoToneIcon from '@material-ui/icons/PhoneTwoTone';
 import StoreMallDirectoryRoundedIcon from '@material-ui/icons/StoreMallDirectoryRounded';
-import clsx from 'clsx';
+import DraftsRoundedIcon from '@material-ui/icons/DraftsRounded';
+import NewReleasesRoundedIcon from '@material-ui/icons/NewReleasesOutlined';
+import SmsRoundedIcon from '@material-ui/icons/SmsOutlined';
+import BugReportOutlinedIcon from '@material-ui/icons/BugReportOutlined';
+import BackupOutlinedIcon from '@material-ui/icons/BackupOutlined';
+import ScatterPlotRoundedIcon from '@material-ui/icons/ScatterPlotOutlined';
 
 import {Logo, ClyLogo} from './logo';
 import DrawerPanleIcons from './DrawerPanelIcons';
@@ -29,7 +34,18 @@ function DrawerPanel({handleDrawerClose, open, classes, current, setCurrentCompo
     const sidebarSecondaryIcons = [{name: 'Settings', icon: <SettingsApplicationsIcon />},
                                                         {name: 'Contact', icon: <PhoneTwoToneIcon />},
                                                         {name: 'Logout', icon: <LogoutIcon />} ];
-
+    
+    const sidebarTertiaryIcons = [
+        {name: 'Ask Ada', icon: <ScatterPlotRoundedIcon />},
+        {name: 'Backup', icon: <BackupOutlinedIcon />},
+        {name: 'Reports', icon: <BugReportOutlinedIcon />},
+        ];
+    const sidebarQuaternaryIcons = [
+        {name: 'Alerts', icon: <NewReleasesRoundedIcon />},
+        {name: 'Mails', icon: <DraftsRoundedIcon />},
+        {name: 'Chats', icon: <SmsRoundedIcon />},
+        ];
+    
     return(
         <div>
            <Drawer
@@ -53,11 +69,11 @@ function DrawerPanel({handleDrawerClose, open, classes, current, setCurrentCompo
                 <Divider />
                     <DrawerPanleIcons  list={sidebarPrimaryIcons} current={current} setCurrentComponent={setCurrentComponent}/>
                 <Divider />
+                <DrawerPanleIcons list={sidebarTertiaryIcons} current={current} setCurrentComponent={setCurrentComponent}/>
+                <Divider />
+                <DrawerPanleIcons list={sidebarQuaternaryIcons} current={current} setCurrentComponent={setCurrentComponent}/>
+                <Divider />
                 <DrawerPanleIcons list={sidebarSecondaryIcons} current={current} setCurrentComponent={setCurrentComponent}/>
-                {/* <div style={{margin:'3vh 0 0 0'}}>
-                <DrawerPanleIcons list={sidebarSecondaryIcons} current={current} setCurrentComponent={setCurrentComponent}/> */}
-
-                {/* </div> */}
             </Drawer>
         </div>
     );

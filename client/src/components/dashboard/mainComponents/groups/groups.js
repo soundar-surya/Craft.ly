@@ -9,23 +9,20 @@ import SearchGroup from './searchGroup'
 import ManageGroup from './manageGroup'
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    margin: '2rem 0 0 0',
+    [theme.breakpoints.down('sm')]: {
+      margin: '0 0 0 0',
+    },
+  },
   container: {
     display: 'grid',
     gridTemplateColumns: 'repeat(12, 1fr)',
     gridGap: theme.spacing(3),
   },
-  paper: {
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-    whiteSpace: 'nowrap',
-    marginBottom: theme.spacing(5),
-    marginTop: theme.spacing(3),
-    height: 700,
-    boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px'
-  },
   paper1: {
     padding: theme.spacing(1),
+    borderRadius: '10px',
     textAlign: 'center',
     color: theme.palette.text.secondary,
     whiteSpace: 'nowrap',
@@ -35,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
   paper2: {
     padding: theme.spacing(1),
+    borderRadius: '10px',
     textAlign: 'center',
     color: theme.palette.text.secondary,
     whiteSpace: 'nowrap',
@@ -48,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
   titleMargin: {
     margin: '1vh 0 0 0'
   } 
-}));
+}))
 
 export default function CreateComponent() {
   let [selectGroup, setSelectGroup] = useState('')
@@ -56,7 +54,7 @@ export default function CreateComponent() {
   let [primary, setPrimary] = useState(true)
 
   return (
-    <div>
+    <div className={classes.root}>
       <Grid container spacing={5}>
         <Grid item xs={12} md={4} lg={3}>
           <Paper className={classes.paper2}>
