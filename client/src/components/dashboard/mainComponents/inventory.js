@@ -1,18 +1,22 @@
-import { useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles'
+import Fab from '@material-ui/core/Fab'
+import AddIcon from '@material-ui/icons/Add'
 
 import Chart from './charts/chart'
 import PreLoader from './preLoader'
-import { Typography } from '@material-ui/core'
+import { Box, Typography } from '@material-ui/core'
 import MorningIcon from '../../../assets/clouds-and-sun.png'
 import MoonIcon from '../../../assets/moon.png'
 
 const useStyles = makeStyles((theme) => ({
    greetContainer: {
+        [theme.breakpoints.up('sm')]: {
+            height: '7em'
+        },
        height: '10vh',
        display: 'flex',
-       background: '#f5f5f5',
        borderRadius: '10px',
        boxShadow: 'rgba(0, 0, 0, 0.1) 0px 10px 50px'
     },
@@ -22,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
         },
         margin: '2.1vh 0 0 1vw',
         width: '4em',
-        height: '4em'
+        height: '4em',
     },
     greetingText: {
         [theme.breakpoints.down('xs')]: {
@@ -37,6 +41,28 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         justifyContent: 'center',
         marginTop: '35vh'
+    },
+    newChart: {
+        [theme.breakpoints.down('xs')]: {
+            margin: '1em 0 0 0',
+        },
+        margin: '2.1vh 1vw 0 0',
+        width: '4em',
+        height: '4em',
+    },
+    fab: {
+        [theme.breakpoints.down('xs')]: {
+            width: '3em',
+            height: '3em',
+        },
+        background: '#FF5757',
+        color: 'white',
+        "&:hover": {
+            backgroundColor: "#FF5757"
+        }
+    },
+    name: {
+        color: '#FF5757'
     }
   }))
 
@@ -74,10 +100,19 @@ function Inventory() {
 
     return(
         <div>
-            <div className={classes.greetContainer}>
-                <img src={currentTime <= 1 ? MorningIcon : MoonIcon} className={classes.timeIcon}/>
-                <span className={classes.greetingText}>{greetings[currentTime]}, Ino</span>
-            </div>
+            <Box className={classes.greetContainer}>
+                <Box>
+                    <img src={currentTime <= 1 ? MorningIcon : MoonIcon} className={classes.timeIcon}/>
+                </Box>
+                <Box flexGrow={1}>
+                    <Typography className={classes.greetingText}>{greetings[currentTime]}, <span className={classes.name}>Surya</span></Typography>
+                </Box>
+                <Box className={classes.newChart}>
+                    <Fab className={classes.fab} aria-label="add">
+                         <AddIcon/>
+                    </Fab>
+                </Box>
+            </Box>
             {renderContent()}
         </div>
     );
