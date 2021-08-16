@@ -42,7 +42,7 @@ export const useStyles = makeStyles((theme) => ({
       paddingBottom: '16px',
       [theme.breakpoints.down('sm')]: {
         paddingBottom: '0px',
-      }
+      },
     },
     drawerOpen: {
       width: drawerWidth,

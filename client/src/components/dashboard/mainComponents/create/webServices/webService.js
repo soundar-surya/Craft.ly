@@ -23,6 +23,7 @@ export default function WebServices({name, setName, setData}) {
   // fetch data from endpoint
   const fetchData = async () => {
     config.data = JSON.parse(config.data)
+    console.log(config)
     let parseConfig = {method: config.method, url: config.url}
     if(Object.keys(config.params)[0]) {
       parseConfig.params = config.params
@@ -37,7 +38,6 @@ export default function WebServices({name, setName, setData}) {
           const {data: res=[]} = await axios(parseConfig);
           // check whether it's an array or object
           if(Array.isArray(res)){
-            console.log(parseConfig)
               setData({config:parseConfig, dataSet: [...res]})
               setMessage('Data retrieved sucessfully.')
             } else {
@@ -85,7 +85,7 @@ export default function WebServices({name, setName, setData}) {
         </Paper>
        </div> 
         {
-            value == 0 ? <Soap/> : (value == 1 ? <Rest config={config} /> : <GraphQL/>)
+            value == 0 ? <Soap/> : (value == 1 ? <Rest config={config} /> : <GraphQL config={config}/>)
         }
         <Button onClick={fetchData} style={{background: '#FF5757', color: 'white'}}>Fetch</Button>
           {
@@ -125,10 +125,11 @@ var useStyles = makeStyles((theme) => ({
     margin: '3vh 0 0 0',
   },
   note: {
+    position: 'relative',
     color: '#2b2d38',
     display: 'flex',
     justifyContent: 'center',
-    margin: '7vh 0 0 2vw',
+    margin: '1vh 0 0 2vw',
     [theme.breakpoints.down('sm')]: {
       fontSize: '3vw'
     },
