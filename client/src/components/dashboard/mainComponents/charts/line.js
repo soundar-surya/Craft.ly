@@ -35,6 +35,8 @@ function LineChart({
       }
 
     const options = {
+      responsive: true,
+      maintainAspectRatio: false,
         scales: {
           yAxes: [
             {

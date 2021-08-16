@@ -12,7 +12,7 @@ function RenderCharts({state, chartTypes, classes, setPws, setChartObject}) {
             {state.map(({chartType, name}, index) => {
                        if(chartType === chartTypes[0]) {
                            return (
-                                        <Grid item xs={12} sm={12} md={12} lg={6} key={name}>
+                                        <Grid item className={classes.roundChartsStyle} xs={12} sm={12} md={12} lg={6} key={name}>
                                             <Line state={state[index]} setPws={setPws} setChartObject={setChartObject} />
                                         </Grid>
                                     )
