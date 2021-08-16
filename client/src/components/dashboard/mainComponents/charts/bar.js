@@ -35,6 +35,8 @@ function BarChart({
       }
 
     const options = {
+      responsive: true,
+      maintainAspectRatio: false,
         scales: {
           yAxes: [
             {
@@ -45,7 +47,7 @@ function BarChart({
           ],
         },
     }
-console.log('______________________________________-');
+
     return(
         <Fragment>
              <Grid container spacing={2} >

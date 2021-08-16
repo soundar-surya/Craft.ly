@@ -67,7 +67,9 @@ export default function OptionTabs({setParams, setHeaders, setData}) {
 
   const handleChange = (event, newValue) => setValue(newValue)
   const handleChangeIndex = index => setValue(index)
-  const onTextAreaInputChange = e => (setData(e.target.value))
+  const onTextAreaInputChange = e => {
+        setData(JSON.stringify(e.target.value))
+  }
 
   useEffect(() => setParams(paramsField), [paramsField])
   useEffect(() => setHeaders(headersField), [headersField])
@@ -85,7 +87,7 @@ export default function OptionTabs({setParams, setHeaders, setData}) {
         >
           <Tab label="Params" {...a11yProps(0)} />
           <Tab label="Headers" {...a11yProps(1)} />
-          <Tab label="Body" {...a11yProps(2)} />
+          <Tab label="Query" {...a11yProps(2)} />
         </Tabs>
         </Paper>
       <SwipeableViews
@@ -99,14 +101,14 @@ export default function OptionTabs({setParams, setHeaders, setData}) {
         <TabPanel value={value} index={1} dir={theme.direction}>
         <Fields field={headersField} setField={setHeadersField} />
         </TabPanel>
-        <TabPanel value={value} index={2} dir={theme.direction}>
+        <TabPanel value={value} index={2} dir={theme.direction} >
           <TextField
           onChange={onTextAreaInputChange}
           id="outlined-multiline-static"
-          label="Body"
+          label="Query"
           multiline
           rows={2}
-          defaultValue="{}"
+          defaultValue="query{}"
           variant="outlined"
           color="secondary"
         />

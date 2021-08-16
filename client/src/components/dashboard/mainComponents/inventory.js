@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     },
     greetingText: {
         [theme.breakpoints.down('xs')]: {
-            margin: '1.2em 0 0 1rem',
+            margin: '1.4em 0 0 1rem',
             fontSize: '1.2em',
         },
         margin: '1.2em 0 0 1rem',
@@ -44,7 +44,8 @@ const useStyles = makeStyles((theme) => ({
     },
     newChart: {
         [theme.breakpoints.down('xs')]: {
-            margin: '1em 0 0 0',
+            // margin: '1em 0 0 0',
+            display: 'none'
         },
         margin: '2.1vh 1vw 0 0',
         width: '4em',
