@@ -30,6 +30,7 @@ function PieChart({
             backgroundColor: colors,
             borderColor: colors,
             borderWidth: 1,
+            hoverOffset: 15
           },
         ],
       }
