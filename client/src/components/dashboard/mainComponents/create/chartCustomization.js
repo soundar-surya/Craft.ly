@@ -20,7 +20,8 @@ function ChartCustomization({dataFields, data: {config, dataSet}, setChartObject
                               yAxisLabelName: '',
                               xAxisLabelNames: [],
                               yAxisLabelData: [],
-                              config: {}
+                              config: {},
+                              gsURL: ''
                              }
     let totalLength = dataSet.length;
     let [chartType, setChartType] = useState('Bar');
@@ -45,8 +46,8 @@ function ChartCustomization({dataFields, data: {config, dataSet}, setChartObject
       chartObject.lengthOfTheFields =  preferredLength;
       chartObject.xAxisLabelName = xAxisLabel;
       chartObject.yAxisLabelName = yAxisLabel;
-      chartObject.label = label
-      chartObject.config = config
+      chartObject.label = label;
+      chartObject.config = config;
       dataSet.length = preferredLength;
     
       setChartObject(chartObject);
