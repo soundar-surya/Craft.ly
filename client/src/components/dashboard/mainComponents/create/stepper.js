@@ -99,7 +99,7 @@ function VerticalStepper({setStep, step, setName, name, setData, data:{dataSet},
   };
 
   const handlePublish = () => {
-    chartObject.name = name;
+    // chartObject.name = name;
     createChart(chartObject);
     setMessage('Chart created successfully.');
   }

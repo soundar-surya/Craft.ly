@@ -8,11 +8,12 @@ import Select from "@material-ui/core/Select";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 
-function ChartCustomization({dataFields, data: {config, dataSet}, setChartObject}) {
+function ChartCustomization({dataFields, data: {config, dataSet}, setChartObject, name}) {
 
   const classes = useStyles();
 
     let chartObject = {
+                              name: '',
                               chartType: '', 
                               label: '',
                               lengthOfTheFields: 0, 
@@ -21,7 +22,7 @@ function ChartCustomization({dataFields, data: {config, dataSet}, setChartObject
                               xAxisLabelNames: [],
                               yAxisLabelData: [],
                               config: {},
-                              gsURL: ''
+                              gs: {id: '', url: ''}
                              }
     let totalLength = dataSet.length;
     let [chartType, setChartType] = useState('Bar');
@@ -42,6 +43,7 @@ function ChartCustomization({dataFields, data: {config, dataSet}, setChartObject
     const handleLabel = event => setLabel(event.target.value)
 
     const createChartObject = () => {
+      chartObject.name = name
       chartObject.chartType = chartType;
       chartObject.lengthOfTheFields =  preferredLength;
       chartObject.xAxisLabelName = xAxisLabel;

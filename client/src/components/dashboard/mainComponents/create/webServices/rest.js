@@ -12,8 +12,8 @@ export default function Rest({config}) {
 
   const methods = ['get', 'post', 'put', 'delete']
   const classes = useStyles();
-  let [method, setMethod] = useState(methods[0]);
-  let [url, setUrl] = useState('https://corona.lmao.ninja/v2/states?sort&yesterday')
+  let [method, setMethod] = useState('');
+  let [url, setUrl] = useState('') // 'https://corona.lmao.ninja/v2/states?sort&yesterday'
   let [headers, setHeaders] = useState(null)
   let [params, setParams] = useState(null)
   let [restApiData, setRestApiData] = useState(null)
@@ -36,6 +36,7 @@ export default function Rest({config}) {
             <InputLabel id="demo-simple-select-outlined-label">Method</InputLabel>
                 <Select
                 className={classes.methodSelectField}
+                placeholder="Method"
                 labelId="demo-simple-select-outlined-label"
                 id="demo-simple-select-outlined"
                 value={method}

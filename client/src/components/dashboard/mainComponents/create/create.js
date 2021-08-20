@@ -58,7 +58,7 @@ export default function CreateComponent() {
           <Paper className={classes.paper2}><Stepper setStep={setStep} step={step} name={name} setName={setName} data={data} chartObject={chartObject} setData={setData} setChartObject={setChartObject}/></Paper>
         </Grid>
         <Grid item xs={12} md={8} lg={9}>
-          <Paper className={classes.paper1}>{step ?  <DataSource setName={setName} setData={setData} name={name}/> : (data.length == 0 ? <DataSource setName={setName} setData={setData} name={name}/> :  <CreateChart data={data} setChartObject={setChartObject}/>)}</Paper>
+          <Paper className={classes.paper1}>{step ?  <DataSource setName={setName} setData={setData} name={name}/> : (data.length === 0 ? <DataSource setName={setName} setData={setData} name={name}/> :  <CreateChart data={data} name={name} setChartObject={setChartObject}/>)}</Paper>
         </Grid>
       </Grid>
     </div>

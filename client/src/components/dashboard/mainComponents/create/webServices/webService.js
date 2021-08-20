@@ -12,18 +12,20 @@ import Rest from './rest'
 import Soap from './soap'
 import GraphQL from './graphQl'
 
-export default function WebServices({name, setName, setData}) {
+export default function WebServices({setData}) {
 
   const classes = useStyles()
   const [message, setMessage] = useState()
   const [value, setValue] = useState(1)
-  let [endpoint, setEndpoint] = useState('')
   let config = {method: '', url: '', params: {}, headers: {}, data: {}}
 
   // fetch data from endpoint
   const fetchData = async () => {
-    config.data = JSON.parse(config.data)
+    if(config.data !== null && Object.keys(config.data).length > 0) {
+      config.data = JSON.parse(config.data)
+    }
     console.log(config)
+
     let parseConfig = {method: config.method, url: config.url}
     if(Object.keys(config.params)[0]) {
       parseConfig.params = config.params
@@ -41,6 +43,7 @@ export default function WebServices({name, setName, setData}) {
               setData({config:parseConfig, dataSet: [...res]})
               setMessage('Data retrieved sucessfully.')
             } else {
+              console.log(res)
                 setMessage('Insuffient data')
             }
         } catch(e) {
@@ -49,13 +52,15 @@ export default function WebServices({name, setName, setData}) {
     }
     
   const handleChange = (event, newValue) => setValue(newValue);
-  const onInputChange = e => setName(e.target.value)
-  const OnEndpointInputChange = e => setEndpoint(e.target.value)
+  // const onInputChange = e => {
+  //   console.log(e.target.value)
+  //   setName(e.target.value)
+  // }
   
   return (
     <Fragment>
     <form className={classes.root} noValidate autoComplete="off">
-      <div>
+      {/* <div>
       <Typography noWrap variant='h6'>Preliminary step</Typography>
         <TextField
         className={classes.title}
@@ -67,7 +72,7 @@ export default function WebServices({name, setName, setData}) {
         variant="outlined"
         color="secondary"
           />
-      </div>
+      </div> */}
       <div class={classes.parentOfTabs}>
         <Paper className={classes.tabs}>
         <Tabs
