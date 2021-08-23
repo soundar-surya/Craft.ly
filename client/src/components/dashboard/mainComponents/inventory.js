@@ -70,8 +70,9 @@ const useStyles = makeStyles((theme) => ({
   
 function Inventory() {
     let classes = useStyles()
-    let state = useSelector(({chartReducer: {arrayOfChartObjects}}) => arrayOfChartObjects)
-    let greetings = ['Good Morning', 'Good Afternoon', 'You deserve rest']
+    let state = useSelector(({chartReducer}) => chartReducer)
+    // let state = useSelector(({chartReducer: {arrayOfChartObjects}}) => arrayOfChartObjects)
+    let greetings = ['Good Morning', 'Good Afternoon', 'Good Evening', 'You deserve rest']
     let [currentTime, setCurrentTime] = useState(0)
     let greeting = () => {
         let myDate = new Date()
@@ -79,10 +80,13 @@ function Inventory() {
         if (hrs < 12) {
             setCurrentTime(0)
         }
-        else if (hrs >= 12 && hrs <= 17) {
+        else if (hrs >= 12 && hrs <= 15) {
             setCurrentTime(1)
         }
-        else if (hrs >= 17 && hrs <= 24) {
+        else if (hrs > 15 && hrs <= 18) {
+            setCurrentTime(1)
+        }
+        else if (hrs > 18 && hrs <= 24) {
             setCurrentTime(2)
         }
     }
@@ -92,10 +96,13 @@ function Inventory() {
     })
 
     const renderContent = () => {
-        if(state.length == 0) {
+        console.log(state.loading)
+        if(state.loading) {
             return <div className={classes.preLoader}><PreLoader /></div>
-        } else {
+        } else if(!state.loading && state.arrayOfChartObjects.length > 0) {
             return <Chart />
+        } else {
+            return <div className={classes.preLoader}><PreLoader /></div>
         }
     }
 
