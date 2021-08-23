@@ -96,7 +96,6 @@ function Inventory() {
     })
 
     const renderContent = () => {
-        console.log(state.loading)
         if(state.loading) {
             return <div className={classes.preLoader}><PreLoader /></div>
         } else if(!state.loading && state.arrayOfChartObjects.length > 0) {
