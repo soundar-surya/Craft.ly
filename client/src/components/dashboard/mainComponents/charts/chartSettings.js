@@ -17,11 +17,13 @@ export default function LongMenu({ setPws, setChartObject, chartObject }) {
   const open = Boolean(anchorEl)
   const classes = useStyles()
   const [openModal, setOpen] = useState(false)
-  let embedWidgetName = `<iframe src="http://localhost:3000/embdwgt/${chartObject.name.replace(' ', '_')}"scrolling="no"  style="height:80vh;width:50vw;border:none;overflow:hidden;"></iframe>`
+  let embedWidgetName =  `<iframe src="${window.location.host === 'localhost:3000' ? 'http://localhost:3000' : 'https://craft-ly.netlify.app'}/embdwgt/${chartObject.name.replace(' ', '_')}" 
+    scrolling="no"  style="height:50vh;width:50vw;border:none;overflow:hidden;margin: 10px;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;"></iframe>`
+
   let [message, setMessage] = useState('')
 
-
   const handleOpenModal = () => {
+    console.log(window.location.host)
     setOpen(true)
   };
 

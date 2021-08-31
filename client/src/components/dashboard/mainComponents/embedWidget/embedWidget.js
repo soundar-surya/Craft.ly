@@ -10,8 +10,8 @@ import Line from '../charts/line'
 
 const useStyles = makeStyles((theme) => ({
     roundChartsStyle: {
-        height:'47vh',
-        width:'30vw',
+        height:'90vh',
+        width:'100vw',
         marginBottom: '8vh'
     }
   }))
@@ -29,27 +29,27 @@ function EmbedWidget() {
         if(chartObject) {
                 if(chartObject.chartType === chartTypes[0]) {
                     return (
-                                <Grid item xs={12} sm={12} md={12} lg={6}>
+                                <div className={classes.roundChartsStyle}>
                                     <Line state={chartObject} />
-                                </Grid>
+                                </div>
                             )
                 } else if(chartObject.chartType === chartTypes[1]) {
                 return (
-                            <Grid item xs={12} sm={12} md={12} lg={6}>
+                            <div className={classes.roundChartsStyle}>
                                 <Bar state={chartObject} />
-                            </Grid>
+                            </div>
                 )
                 } else if(chartObject.chartType === chartTypes[2]) {
                 return (
-                            <Grid item className={classes.roundChartsStyle} xs={12} sm={12} md={12} lg={6}>
+                            <div className={classes.roundChartsStyle}>
                                 <Pie state={chartObject} />
-                             </Grid>
+                             </div>
                 )
                 } else if(chartObject.chartType === chartTypes[3]) {
                 return(
-                            <Grid item xs={12}  className={classes.roundChartsStyle} sm={12} md={12} lg={6}>
+                            <div className={classes.roundChartsStyle}>
                                 <Doughnut state={chartObject} />
-                            </Grid>
+                            </div>
                 ) 
                 }
         }

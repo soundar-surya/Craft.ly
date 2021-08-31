@@ -84,10 +84,10 @@ function Inventory() {
             setCurrentTime(1)
         }
         else if (hrs > 15 && hrs <= 18) {
-            setCurrentTime(1)
+            setCurrentTime(2)
         }
         else if (hrs > 18 && hrs <= 24) {
-            setCurrentTime(2)
+            setCurrentTime(3)
         }
     }
 
