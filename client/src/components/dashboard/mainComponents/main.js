@@ -5,7 +5,8 @@ import Groups from './groups/groups';
 import Settings from './settings';
 import Contact from './contact';
 import Logout from './logout';
-import Edit from './edit/edit'
+import Edit from './edit/edit';
+import ChatWindow from './chats/chatWindow';
 
 function findCurrentComponent(currentComponent='') {
     if(currentComponent == 'Inventory') {
@@ -24,6 +25,8 @@ function findCurrentComponent(currentComponent='') {
         return <Logout />;
     } else if(currentComponent == 'Edit') {
         return <Edit chartObject={null}/>
+    } else if(currentComponent == 'Chats') {
+        return <ChatWindow />
     }
 };
 
